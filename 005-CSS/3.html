@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  *{
+    box-sizing: border-box;
+    border: solid;
+  }
+  .row::before,
+  .row::after{
+    content: "";
+    clear: both;
+    display: block;
+  }
+  .col{
+    float: left;
+  }
+  .w50{
+    width: 50%;
+  }
+  .w25{
+    width: 25%;
+  }
+  </style>
+</head>
+<body>
+  
+<div class="row">
+  <div class="col w50">a</div>
+  <div class="col w50">b</div>
+</div>
+
+<div class="row">
+  <div class="col w50">a</div>
+  <div class="col w25">b</div>
+  <div class="col w25">c</div>
+</div>
+
+</body>
+</html>
