@@ -1,0 +1,122 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .row::before,
+    .row::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .col {
+        float: left;
+    }
+    .col-8{
+        width: 33.333333333333333%;
+    }
+    .card {
+        box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+        margin: 20px;
+    }
+
+    .thumbnail {
+        position: relative;
+    }
+
+    .thumbnail img {
+        max-width: 100%;
+    }
+
+    .flag {
+        display: inline-block;
+        width: 300px;
+        height: 40px;
+        position: absolute;
+        top: 2%;
+        left: 50%;
+        margin-left: -150px;
+        background: #aaa;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .detail>* {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .name {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .muted {
+        opacity: .5;
+    }
+
+    .price .hot {
+        color: orangered;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+
+    .price .muted {
+        text-decoration: line-through;
+    }
+</style>
+<div class="row">
+    <div class="col col-8">
+        <div class="card">
+            <div class="thumbnail">
+                <img src="http://dummyimage.com/1000x1000">
+                <span class="flag">20% OFF</span>
+            </div>
+            <div class="detail">
+                <div class="name">小米 新机 2xx</div>
+                <div class="desc muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</div>
+                <div class="price">
+                    <span class="hot">2000元</span>
+                    <span class="muted">2500</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-8">
+        <div class="card">
+            <div class="thumbnail">
+                <img src="http://dummyimage.com/1000x1000">
+                <span class="flag">20% OFF</span>
+            </div>
+            <div class="detail">
+                <div class="name">小米 新机 2xx</div>
+                <div class="desc muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</div>
+                <div class="price">
+                    <span class="hot">2000元</span>
+                    <span class="muted">2500</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-8">
+        <div class="card">
+            <div class="thumbnail">
+                <img src="http://dummyimage.com/1000x1000">
+                <span class="flag">20% OFF</span>
+            </div>
+            <div class="detail">
+                <div class="name">小米 新机 2xx</div>
+                <div class="desc muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</div>
+                <div class="price">
+                    <span class="hot">2000元</span>
+                    <span class="muted">2500</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
