@@ -7,10 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>douban</title>
     <style>
+        form,
         body{
             margin: 0;
+        }
+
+        body{
             font-family: sans-serif;
-            font-size: 12px;
+            font-size: 16px;
         }
         img{
             max-width: 100%;
@@ -61,6 +65,10 @@
         .col-23{width : 95.83333333333334%;}
         .col-24{width : 100%;}
         
+        .text-right{
+            text-align: right;
+        }
+
         .nav.global a{
             display: inline-block;
             padding: 5px;
@@ -76,7 +84,50 @@
             color: #ddd;
         }
 
+        .nav.page{
+            margin: 20px 0px;
+        }
 
+        .nav.page .link-group a{
+            display: inline-block;
+            padding: 20px 10px;
+            color: #037b82;
+        }
+
+        .nav.page .link-group a:hover{
+            background: #037b82;
+            color: #fff;
+        }
+        
+        .nav.page .search{
+            padding-top: 16px;
+            position: relative;
+        }
+
+        .nav.page .search input,
+        .nav.page .search button{
+            height: 2em;
+        }
+        .nav.page .search input{
+            padding-left: 10px;
+            width: 100%;
+            outline: none;
+            border: 1px solid rgba(0, 0, 0, .15);
+            border-radius: 3px;
+        }
+
+        .nav.page .search input:focus{
+            border-color: #037b82;
+        }
+
+        .nav.page .search button{
+            color: rgba(0, 0, 0, .5);
+            background: transparent;
+            border: none;
+            position: absolute;
+            right: 0;
+            top: 18px;
+        }
     </style>
 </head>
 
@@ -97,7 +148,7 @@
                     <a href="#">豆品</a>
                     <a href="#">更多</a>
                 </div>
-                <div class="col col-8">
+                <div class="col col-8 text-right">
                     <a href="#">下载豆瓣客户端</a>
                     <a href="#">登录</a>
                     <a href="#">注册</a>
@@ -108,8 +159,12 @@
     <div class="main">
         <div class="container">
             <div class="row nav page">
-                <div class="col col-6 logo"></div>
-                <div class="col col-10">
+                <div class="col col-4 logo">
+                    <a href="#">
+                        <img src="logo.png" style="max-width:160px;margin-top: 14px;">
+                    </a>
+                </div>
+                <div class="col col-12 link-group">
                     <a href="#">精选</a>
                     <a href="#">文化</a>
                     <a href="#">行摄 </a>
@@ -118,9 +173,9 @@
                     <a href="#">生活</a>
                     <a href="#">科技</a>
                 </div>
-                <div class="col col-8 search">
-                    <input type="text"><input type="submit" value="搜索">
-                </div>
+                <form class="col col-8 search">
+                    <input type="text" placeholder="小组，话题"><button>搜</button>
+                </form>
             </div>
             <div>
                 <div class="title">
