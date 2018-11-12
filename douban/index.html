@@ -10,6 +10,7 @@
         form,
         body{
             margin: 0;
+            font-family: sans-serif;
         }
 
         body{
@@ -22,6 +23,7 @@
 
         a{
             text-decoration: none;
+            color: #669;
         }
 
         .container{
@@ -128,6 +130,38 @@
             right: 0;
             top: 18px;
         }
+
+        .activity .like{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            padding: 5px;
+            color: #ca6445;
+            background-color: #fae9da;
+        }
+
+        .activity .preview{
+            border-bottom:1px solid rgba(0, 0, 0, .3); 
+        }
+
+        .activity .preview .desc{
+            padding: 10px;
+            background-color: #f6f6f6;
+            color: #666;
+        }
+
+        .activity .preview .title{
+            display: inline-block;
+        }
+        
+        .activity .preview .info{
+            color: #777
+        }
+
+        .activity .preview > *{
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -182,14 +216,16 @@
                     <h1>讨论精选</h1>
                 </div>
                 <div class="row">
-                    <div class="col col-14 content">
-                        <div class="row">
-                            <div class="col col-4 like">
-                                <div>461</div>
-                                <div>喜欢</div>
+                    <div class="col col-16 content">
+                        <div class="row activity">
+                            <div class="col col-3">
+                                <div class="like">
+                                    <div>461</div>
+                                    <div>喜欢</div>
+                                </div>
                             </div>
-                            <div class="col col-20">
-                                <div class="title">程度??#最抠门公司大赛#哈哈哈哈哈</div>
+                            <div class="col col-21 preview">
+                                <a href="#" class="title">程度??#最抠门公司大赛#哈哈哈哈哈</a>
                                 <div class="desc">哎呀妈呀不行 楼主已经第四次憋不住笑躲到厕所里来了 看到有鹅说 半年每人发一卷厕纸 还有这个鹅为了厕纸做演讲的 哈哈哈
                                     那就精选一下抠门得令人叫绝的公司: 1.厕纸问题，一片哭嚎 2</div>
                                 <div class="info">
@@ -199,7 +235,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col col-10 group">
+                    <div class="col col-8 group">
                         <div class="title">值得加入的小组</div>
                         <div>
                             <div class="row">
