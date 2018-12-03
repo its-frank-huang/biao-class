@@ -15,6 +15,14 @@
         margin: 0;
     }
 
+    button,
+    input{
+        border-color: rgba(0, 0, 0, .5);
+        border: 1px solid;
+        outline: 0;
+
+    }
+
     .container{
         width: 1280px;
         margin-left: auto;
@@ -65,8 +73,29 @@
         text-align: right;
     }
 
+    .arrow-up {
+        width: 0;
+        height: 0px;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid #fff;
+        position: absolute;
+        top: -15px;
+    }
+
+    .banner-bg{
+        background: url(banner.jpg);
+        position: fixed;
+        height: 600px;
+        width: 100%;
+        z-index: -1;
+    }
+
+    .white-bg{
+        background: #fff;
+    }
+
     .header{
-        background:rgba(0, 0, 0, .5);
         color: white;
     }
     
@@ -127,7 +156,90 @@
         vertical-align: middle;
         margin-top: 1px;
     }
+
+    .centered{
+        margin: 100px;
+    }
+
+    .heading{
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .heading .title{
+        font-size: 4em;
+        font-weight: 900;
+    }
+
+    .heading .sub-title{
+        font-size: 1.8em;
+        font-weight: 100;
+    }
+
+    .search{
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cat-group{
+        margin-left: -10px;
+    }
+
+    .search .cat-group > *{
+        display: inline-block;
+        margin: 2px 10px;
+        font-weight: 900;
+    }
+
+    .search .search-bar{
+        font-size: 0;
+        margin-top: 20px;
+        position: relative;
+    }
+
+    .search .search-bar span{
+        float: left;
+    }
+
+    .search .search-bar .text{
+        width: 80%;
+    }
+
+    .search .search-bar .submit{
+        width: 20%;
+    }
+
+    .search .search-bar input{
+        background: #fff;
+        line-height: 14px;
+        border: none;
+    }
+
+    .search .search-bar input[type=text]{
+        padding: 15px 10px;
+        width: 100%;
+    }
+
+    .search .search-bar input[type=submit]{
+        padding: 15px 10px;
+        width: 100%;
+        background: #00ae66;
+        color: #fff;
+        font-size: 16px;
+    }
+
+    .anno{
+        margin-top: 200px;
+        margin-bottom: 20px;
+    }
+
+    .anno a{
+        display: inline-block;
+        margin-right: 15px;
+    }
 </style>
+<div class="banner-bg"></div>
 <div class="header">
     <div class="row navbar">
         <div class="container">
@@ -160,12 +272,12 @@
         </div>
     </div>
     <div class="centered">
-        <div>
-            <div class="title"></div>
-            <div class="sub-title"></div>
+        <div class="heading">
+            <div class="title">连接每个家的故事</div>
+            <div class="sub-title">北京链家真实在售二手房</div>
         </div>
-        <div>
-            <div class="link-group">
+        <div class="search">
+            <div class="cat-group">
                 <a href="#">找二手房</a>
                 <a href="#">找新房</a>
                 <a href="#">找租房</a>
@@ -173,8 +285,9 @@
                 <a href="#">搜问答</a>
             </div>
             <form class="search-bar">
-                <input type="text" placeholder="请输入区域、商圈或小区名开始找房">
-                <button type="submit">开始找房</button>
+                <span class="text"><input type="text" placeholder="请输入区域、商圈或小区名开始找房"></span>
+                <span class="submit"><input type="submit">开始找房</input></span>
+                <div class="arrow-up"></div>
             </form>
         </div>
     </div>
@@ -186,6 +299,7 @@
         </div>
     </div>
 </div>
+<div class="white-bg">
 <div class="main">
     <div class="row tool">
         <div class="container">
@@ -404,4 +518,5 @@
         <div>链家网（北京）科技有限公司 | 网络经营许可证 京ICP备16057509号-2 | © Copyright©2010-2018 链家网Lianjia.com版权所有</div>
         <div>京公网安备 11010802024019号</div>
     </div>
+</div>
 </div>
