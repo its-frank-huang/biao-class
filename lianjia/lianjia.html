@@ -65,6 +65,14 @@
     .col-23{width : 95.83333333333334%;}
     .col-24{width : 100%;}
 
+    .w30{
+        width: 30%;
+    }
+
+    .left{
+        float: left;
+    }
+
     .right{
         float: right;
     }
@@ -260,6 +268,49 @@
         font-size: .5em;
         opacity: .6;
     }
+
+    .app {
+        background: url(./img/bg-app.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding-top: 100px;
+    }
+
+    .app .w30 > *{
+        margin-bottom: 20px;
+    }
+
+    .app .title,
+    .app .sub-title {
+        line-height: 1;
+    }
+
+    .app .title{
+        font-size: 500%;
+        font-weight: bold;
+    }
+
+    .app .sub-title{
+        font-size: 300%;
+        font-weight: lighter;
+    }
+
+    .app .install button{
+        width: 100%;
+        padding: 10px 0;
+        margin-bottom: 10px;
+        border: none;
+        background: #00ae66;
+        color: #fff;
+        font-size: 150%;
+        font-weight: bold;
+    }
+
+    .app .install .qrcode{
+        margin-left: 30px;
+        width: 28%;
+    }
 </style>
 <div class="banner-bg"></div>
 <div class="header">
@@ -356,20 +407,24 @@
             </div>
         </div>
         <div class="row app">
-            <div>
-                <div class="sub-title">一链倾城</div>
-                <div class="title">为你为家</div>
-            </div>
-            <div class="desc">
-                集二手、新房、租房功能于一体，随时随地任性找房。IM匿名咨询让您放心，消息动态推送让您省心，服务承诺让您安心，数据百科锦囊让您感受贴心漫漫找房路，我们努力为您想更多。
-            </div>
-            <div class="row install">
-                <div class="col col-14">
-                    <button>Iphone</button>
-                    <button>Android</button>
-                </div>
-                <div class="col col-10">
-                    <img src="http://dummyimage.com/300x300">
+            <div class="container">
+                <div class="w30">
+                    <div class="head">
+                        <div class="sub-title">一链倾城</div>
+                        <div class="title">为你为家</div>
+                    </div>
+                    <div class="desc">
+                        集二手、新房、租房功能于一体，随时随地任性找房。IM匿名咨询让您放心，消息动态推送让您省心，服务承诺让您安心，数据百科锦囊让您感受贴心漫漫找房路，我们努力为您想更多。
+                    </div>
+                    <div class="row install">
+                        <div class="col col-14">
+                            <button>Iphone</button>
+                            <button>Android</button>
+                        </div>
+                        <div class="col col-10 qrcode">
+                            <img src="http://dummyimage.com/300x300">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
