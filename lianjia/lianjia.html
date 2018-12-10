@@ -5,6 +5,7 @@
 
     a{
         text-decoration: none;
+        color: inherit;
     }
 
     img{
@@ -248,7 +249,8 @@
     }
 
     .main > *{
-        padding: 20px 0;
+        padding: 50px 0;
+        margin: 10px 0;
     }
 
     .tool{
@@ -256,12 +258,11 @@
     }
 
     .tool .thumbnail{
-        padding: 10px 140px;
+        padding: 10px 160px;
     }
 
     .tool .title{
         font-size: 1.2em;
-        font-weight: 700;
     }
 
     .tool .sub-title{
@@ -311,6 +312,76 @@
         margin-left: 30px;
         width: 28%;
     }
+
+    .card-group .head{
+        margin: 20px 0;
+    }
+
+    .card-group .head .left .title{
+        font-size: 2em;
+        font-weight: 900;
+    }
+
+    .card-group .head .left .sub-title{
+        font-size: 1.8em;    
+        font-weight: 100;
+        margin-left: 20px;
+    }
+
+    .card-group .head .left .desc{
+        color: #999;
+    }
+
+    .card-lot {
+        margin-left: -18px;
+        margin-right: -18px;
+    }
+    .card-group .card{
+        padding: 10px 20px;
+    }
+
+    .card-group .card .box{
+        margin-top: 20px;
+        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0,.3);
+    }
+
+    .card-group  .card .thumbnail{
+        position: relative;
+    }
+
+    .card-group  .card .card-img-addon{
+        position: absolute;
+        bottom: 20;
+        left: 0;
+        display: inline-block;
+        width: 60px;
+        background: #444;
+        color: #fff;
+        line-height: 1.5em;
+        padding-left: 10px;
+    }
+
+    .card-group  .card .box .info{
+        padding: 10px 10px;
+    }
+
+    .card-group  .card .box .info .title{
+        font-weight: 700;
+        font-size: 1.2em;
+        margin-bottom: 5px;
+    }
+
+    .card-group  .card .box .info .desc{
+        color: #666;
+        font-size: 80%;
+    }
+
+    .card-group  .card .card-addon{
+        margin-top: 10px;
+        color: #666;
+        font-size: 80%;
+    }
+
 </style>
 <div class="banner-bg"></div>
 <div class="header">
@@ -428,110 +499,76 @@
                 </div>
             </div>
         </div>
-        <div class="secondhand">
-            <div class="row header">
-                <div class="col">
-                    <span class="title">二手好房</span><span class="sub-title">为你而选</span>
-                    <div class="desc">好房源那么多，我们为你精选，链家网会越来越懂你</div>
-                </div>
-                <div class="col right">
-                    <a href="#">更多北京二手好房</a>
-                </div>
-            </div>
-            <div class="row card-group">
-                <div class="col col-6 card">
-                    <div class="box">
-                        <div class="thumbnail"><img src="http://dummyimage.com/300x300"></div>
-                        <div class="title">万科紫苑 南北通透全能小三</div>
-                        <div class="desc">万科紫苑 3室2厅 95.22平米</div>
+        <div class="secondhand card-group">
+            <div class="container">
+                <div class="row head">
+                    <div class="col left">
+                        <span class="title">二手好房</span><span class="sub-title">为你而选</span>
+                        <div class="desc">好房源那么多，我们为你精选，链家网会越来越懂你</div>
                     </div>
-                    <span>近期关注度较高房源</span>
-                </div>
-                <div class="col col-6 card">
-                    <div class="box">
-                        <div class="thumbnail"><img src="http://dummyimage.com/300x300"></div>
-                        <div class="title">万科紫苑 南北通透全能小三</div>
-                        <div class="desc">万科紫苑 3室2厅 95.22平米</div>
+                    <div class="col right">
+                        <a href="#">更多北京二手好房</a>
                     </div>
-                    <span>近期关注度较高房源</span>
                 </div>
-                <div class="col col-6 card">
-                    <div class="box">
-                        <div class="thumbnail"><img src="http://dummyimage.com/300x300"></div>
-                        <div class="title">万科紫苑 南北通透全能小三</div>
-                        <div class="desc">万科紫苑 3室2厅 95.22平米</div>
+                <div class="row card-lot">
+                    <div class="col col-6 card">
+                        <div class="box">
+                            <div class="thumbnail">
+                                <img src="http://dummyimage.com/400x300">
+                                <span class="card-img-addon">450万</span>
+                            </div>
+                            <div class="info">
+                                <div class="title">万科紫苑 南北通透全能小三</div>
+                                <div class="desc">万科紫苑 3室2厅 95.22平米</div>
+                            </div>
+                        </div>
+                        <div class="card-addon">近期关注度较高房源</div>
                     </div>
-                    <span>近期关注度较高房源</span>
+                    <div class="col col-6 card">
+                        <div class="box">
+                            <div class="thumbnail">
+                                <img src="http://dummyimage.com/400x300">
+                                <span class="card-img-addon">450万</span>
+                            </div>
+                            <div class="info">
+                                <div class="title">万科紫苑 南北通透全能小三</div>
+                                <div class="desc">万科紫苑 3室2厅 95.22平米</div>
+                            </div>
+                        </div>
+                        <div class="card-addon">近期关注度较高房源</div>
+                    </div>
+                    <div class="col col-6 card">
+                        <div class="box">
+                            <div class="thumbnail">
+                                <img src="http://dummyimage.com/400x300">
+                                <span class="card-img-addon">450万</span>
+                            </div>
+                            <div class="info">
+                                <div class="title">万科紫苑 南北通透全能小三</div>
+                                <div class="desc">万科紫苑 3室2厅 95.22平米</div>
+                            </div>
+                        </div>
+                        <div class="card-addon">近期关注度较高房源</div>
+                    </div>
+                    <div class="col col-6 card">
+                        <div class="box">
+                            <div class="thumbnail">
+                                <img src="http://dummyimage.com/400x300">
+                                <span class="card-img-addon">450万</span>
+                            </div>
+                            <div class="info">
+                                <div class="title">万科紫苑 南北通透全能小三</div>
+                                <div class="desc">万科紫苑 3室2厅 95.22平米</div>
+                            </div>
+                        </div>
+                        <div class="card-addon">近期关注度较高房源</div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="dim">
-            <div class="row header">
-                <div class="col">
-                    <span class="title">小区</span><span class="sub-title">为你推荐</span>
-                    <div class="desc">好房源那么多，我们为你精选，链家网会越来越懂你</div>
-                </div>
-                <div class="col right">
-                    <a href="#">更多北京二手好房</a>
-                </div>
-            </div>
-            <div class="row card-group">
-                <div class="col col-8 card">
-                    <div class="box">
-                        <div class="thumbnail"><img src="http://dummyimage.com/300x300"></div>
-                        <div class="title">万科紫苑 南北通透全能小三</div>
-                        <div class="row desc">
-                            <div class="col">万科紫苑 3室2厅 95.22平米</div>
-                            <div class="col right">2003年</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-8 card">
-                    <div class="box">
-                        <div class="thumbnail"><img src="http://dummyimage.com/300x300"></div>
-                        <div class="title">万科紫苑 南北通透全能小三</div>
-                        <div class="row desc">
-                            <div class="col">万科紫苑 3室2厅 95.22平米</div>
-                            <div class="col right">2003年</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-8 card">
-                    <div class="box">
-                        <div class="thumbnail"><img src="http://dummyimage.com/300x300"></div>
-                        <div class="title">万科紫苑 南北通透全能小三</div>
-                        <div class="row desc">
-                            <div class="col">万科紫苑 3室2厅 95.22平米</div>
-                            <div class="col right">2003年</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="new-house">
-            <div class="row header">
-                <div class="col">
-                    <span class="title">小区</span><span class="sub-title">为你推荐</span>
-                    <div class="desc">好房源那么多，我们为你精选，链家网会越来越懂你</div>
-                </div>
-                <div class="col right">
-                    <a href="#">更多北京二手好房</a>
-                </div>
-            </div>
-            <div class="row card-group">
-                <div class="col col-8 card">
-                    <div class="box">
-                        <div class="thumbnail"><img src="http://dummyimage.com/300x300"></div>
-                        <div class="title">万科紫苑 南北通透全能小三</div>
-                    </div>
-                </div>
-                <div class="col col-8 card">
-                    <div class="box">
-                        <div class="thumbnail"><img src="http://dummyimage.com/300x300"></div>
-                        <div class="title">万科紫苑 南北通透全能小三</div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="row certificate">
             <div class="col col-12">
