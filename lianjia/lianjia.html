@@ -82,6 +82,10 @@
         text-align: right;
     }
 
+    .muted{
+        opacity: .4;
+    }
+
     .arrow-up {
         width: 0;
         height: 0px;
@@ -382,6 +386,43 @@
         font-size: 80%;
     }
 
+    .card-group.dim {
+        background: #f1f1f1;
+    }
+
+    .card-group.dim .card .box{
+        box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, .3);
+    }
+
+    .card-group.clean .card .box{
+        box-shadow: none;
+    }
+
+    .card-group.clean .card .thumbnail{
+        position: relative;
+    }
+
+    .card-group.clean .card .info{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        text-align: center;
+    }
+
+    .card-group.clean .card .info .title{
+        font-size: 1.5em;
+        font-weight: 900;
+        color: #fff;
+    }
+
+    .card-group.clean .card .info .desc{
+        font-size: 1.2em;
+        font-weight: 900;
+        color: #ffff00;
+    }
+
 </style>
 <div class="banner-bg"></div>
 <div class="header">
@@ -499,7 +540,7 @@
                 </div>
             </div>
         </div>
-        <div class="secondhand card-group">
+        <div class="card-group">
             <div class="container">
                 <div class="row head">
                     <div class="col left">
@@ -566,9 +607,104 @@
                 </div>
             </div>
         </div>
-        <div class="dim">
+        <div class="card-group dim">
+            <div class="container">
+                <div class="row head">
+                    <div class="col left">
+                        <span class="title">小区</span><span class="sub-title">为你推荐</span>
+                        <div class="desc">纵览小区，恋上这座城</div>
+                    </div>
+                    <div class="col right">
+                        <a href="#">更多北京小区</a>
+                    </div>
+                </div>
+                <div class="row card-lot">
+                    <div class="col col-8 card">
+                        <div class="box">
+                            <div class="thumbnail">
+                                <img src="http://dummyimage.com/400x300">
+                            </div>
+                            <div class="info row">
+                                <div class="title">远洋山水</div>
+                                <div class="desc left">67140/平</div>
+                                <div class="right muted">2003年建</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-8 card">
+                        <div class="box">
+                            <div class="thumbnail">
+                                <img src="http://dummyimage.com/400x300">
+                            </div>
+                            <div class="info row">
+                                <div class="title">远洋山水</div>
+                                <div class="desc left">67140/平</div>
+                                <div class="right muted">2003年建</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-8 card">
+                        <div class="box">
+                            <div class="thumbnail">
+                                <img src="http://dummyimage.com/400x300">
+                            </div>
+                            <div class="info row">
+                                <div class="title">远洋山水</div>
+                                <div class="desc left">67140/平</div>
+                                <div class="right muted">2003年建</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="new-house">
+        <div class="card-group clean">
+            <div class="container">
+                <div class="row head">
+                    <div class="col left">
+                        <span class="title">新房</span><span class="sub-title">新奇航</span>
+                        <div class="desc">纵览小区，恋上这座城</div>
+                    </div>
+                    <div class="col right">
+                        <a href="#">更多北京小区</a>
+                    </div>
+                </div>
+                <div class="row card-lot">
+                    <div class="col col-8 card">
+                        <div class="box">
+                            <div class="thumbnail">
+                                <img src="http://dummyimage.com/400x300">
+                                <div class="info row">
+                                    <div class="title">万合菲丽</div>
+                                    <div class="desc">52449元/m2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-8 card">
+                        <div class="box">
+                            <div class="thumbnail">
+                                <img src="http://dummyimage.com/400x300">
+                                <div class="info row">
+                                    <div class="title">万合菲丽</div>
+                                    <div class="desc">52449元/m2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-8 card">
+                        <div class="box">
+                            <div class="thumbnail">
+                                <img src="http://dummyimage.com/400x300">
+                                <div class="info row">
+                                    <div class="title">万合菲丽</div>
+                                    <div class="desc">52449元/m2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row certificate">
             <div class="col col-12">
