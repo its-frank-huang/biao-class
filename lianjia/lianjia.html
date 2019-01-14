@@ -215,14 +215,6 @@
         float: left;
     }
 
-    .search .search-bar .text{
-        width: 80%;
-    }
-
-    .search .search-bar .submit{
-        width: 20%;
-    }
-
     .search .search-bar input{
         background: #fff;
         line-height: 14px;
@@ -231,15 +223,18 @@
 
     .search .search-bar input[type=text]{
         padding: 15px 10px;
-        width: 100%;
+        width: 80%;
+        vertical-align: middle;
+
     }
 
     .search .search-bar input[type=submit]{
-        padding: 15px 10px;
-        width: 100%;
+        padding: 16px 10px;
+        width: 20%;
         background: #00ae66;
         color: #fff;
         font-size: 16px;
+        vertical-align: middle;
     }
 
     .anno{
@@ -286,16 +281,20 @@
         margin-bottom: 20px;
     }
 
+    .slogan .title,
+    .slogan .sub-title,
     .app .title,
     .app .sub-title {
         line-height: 1;
     }
 
+    .slogan .title,
     .app .title{
         font-size: 500%;
         font-weight: bold;
     }
 
+    .slogan .sub-title,
     .app .sub-title{
         font-size: 300%;
         font-weight: lighter;
@@ -423,6 +422,46 @@
         color: #ffff00;
     }
 
+    .slogan{
+        background-image: url(./img/slogan.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        color: #fff;
+    }
+
+    .slogan .title{
+        font-size: 300%;
+    }
+
+    .slogan .sub-title{
+        font-size: 200%;
+    }
+
+    .slogan .right > *{
+        margin-bottom: 10px;
+    }
+
+    .slogan input{
+        display: block;
+        padding: 10px;
+        width: 100%;
+        border-radius: 3px;
+        border: solid #ddd 1px;
+    }
+
+    .slogan .query{
+        position: relative;
+    }
+
+    .slogan .query button{
+        position: absolute;
+        top:0;
+        right:0;
+        padding: 10px;
+        background: transparent;
+        border: none;
+    }
+    
 </style>
 <div class="banner-bg"></div>
 <div class="header">
@@ -470,8 +509,8 @@
                 <a href="#">搜问答</a>
             </div>
             <form class="search-bar">
-                <span class="text"><input type="text" placeholder="请输入区域、商圈或小区名开始找房"></span>
-                <span class="submit"><input type="submit">开始找房</input></span>
+                    <input type="text" placeholder="请输入区域、商圈或小区名开始找房">
+                    <input type="submit">
                 <div class="arrow-up"></div>
             </form>
         </div>
@@ -706,17 +745,21 @@
                 </div>
             </div>
         </div>
-        <div class="row certificate">
-            <div class="col col-12">
-                <div class="title">链家真实房源</div>
-                <div class="sub-title">不是嘴上说说就可以</div>
-            </div>
-            <div class="col col-12">
-                <div>真实存在，真实在售，真实价格，真实图片！</div>
-                <div>链家郑重向用户承诺：真实房源，假一赔百元！</div>
-                <form action="">
-                    <input type="text" placeholder="请输入链家编号查询真伪..."><button>搜</button>
-                </form>
+        <div class="row slogan">
+            <div class="container">
+                <div class="col col-12">
+                    <div class="title">链家真实房源</div>
+                    <div class="sub-title">不是嘴上说说就可以</div>
+                </div>
+                <div class="col col-12 right">
+                    <div>
+                        <div>真实存在，真实在售，真实价格，真实图片！</div>
+                        <div>链家郑重向用户承诺：真实房源，假一赔百元！</div>
+                    </div>
+                    <form action="" class="query">
+                        <input type="text" placeholder="请输入链家编号查询真伪..."><button>搜</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
