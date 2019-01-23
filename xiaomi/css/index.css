@@ -1,39 +1,72 @@
-body{
-    font-size: 10px;
+.img-group,
+.nav.page .search{
+    margin-top: 24px;
 }
 
-.nav.global{
-    background: #333;
-    color: #eee;
+.logo{
+    background-image: url(../img/mi-logo.png);
+    width: 60px;
+    height: 60px;
+    background-color: #ff6700;
+    background-position: center;
+    background-size: 90%;
 }
 
-.nav.global a{
-    color: #999;
+.nav.page .link-group > *{
+    font-size: 1.6em;
     display: inline-block;
-    padding: 12px 5px;
+    padding: 40px 8px;
 }
 
-.nav.global a:hover{
-    color: #fff;
-}
-
-.nav.global a:not(:last-child)::after{
-    content: "|";
-    color: #666;
-    margin-left: 16px;
-}
-
-.nav.global .right a:nth-last-child(2)::after{
-    display: none;
-} 
-
-.nav.global .right a:last-child:hover{
-    background: #ffffff;
+.nav.page .link-group > a:hover{
     color: #ff6700;
 }
 
-.nav a.lighter{
-    background: #444;
-    padding-left: 10px; 
-    padding-right: 10px; 
+.nav.page .search{
+    position: relative;
 }
+
+.nav.page .search .input-group > *{
+    padding: 15px;
+    border-color: #ccc;
+    transition: .2s;
+}
+
+.nav.page .search .input-group input{
+    width: 240px;
+    border-right: none;
+    vertical-align: middle;
+}
+
+.nav.page .search .input-group button{
+    vertical-align: middle;
+    padding: 14px;
+}
+
+.nav.page .search .input-group:hover > *{
+    border-color: #999;
+}
+
+.nav.page .search .input-group button:hover
+,.nav.page .search .rec:hover{
+    background: #ff6700;
+    color: #fff;
+}
+
+.nav.page .search .input-group button:hover{
+    border-color: #ff6700;
+}
+
+.nav.page .search .rec-group{
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translate(0px,-50%);
+}
+
+.nav.page .search .rec{
+    margin-left: 2px;
+    display: inline-block;
+    padding: 2px;
+}
+
