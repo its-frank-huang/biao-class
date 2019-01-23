@@ -1,0 +1,39 @@
+body{
+    font-size: 10px;
+}
+
+.nav.global{
+    background: #333;
+    color: #eee;
+}
+
+.nav.global a{
+    color: #999;
+    display: inline-block;
+    padding: 12px 5px;
+}
+
+.nav.global a:hover{
+    color: #fff;
+}
+
+.nav.global a:not(:last-child)::after{
+    content: "|";
+    color: #666;
+    margin-left: 16px;
+}
+
+.nav.global .right a:nth-last-child(2)::after{
+    display: none;
+} 
+
+.nav.global .right a:last-child:hover{
+    background: #ffffff;
+    color: #ff6700;
+}
+
+.nav a.lighter{
+    background: #444;
+    padding-left: 10px; 
+    padding-right: 10px; 
+}
