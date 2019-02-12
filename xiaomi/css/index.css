@@ -12,6 +12,14 @@
     background-size: 90%;
 }
 
+.first-screen > *{
+    margin-bottom: 10px;
+}
+
+.nav.page{
+    margin-bottom: 0;
+}
+
 .nav.page .link-group > *{
     font-size: 1.5em;
     display: inline-block;
@@ -131,4 +139,14 @@
 
 .slider .navigator .next:hover{
     background-position-x: -44px;
+}
+
+.top-promo .shortcuts > *{
+    color: #fff;
+    padding: 31px 20px;
+    background: rgba(0,0,0,.5);
+}
+
+.top-promo .card-group > * {
+    padding-left: 10px;
 }
