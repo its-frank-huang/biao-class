@@ -19,16 +19,7 @@
 
     .item {
         position: absolute;
-        transition: all 1s;
-        transform: translateX(1000px);
-    }
-
-    .item:first-child {
-        transform: translateX(0px);
-    }
-
-    .item:last-child {
-        transform: translateX(-1000px);
+        transition: all 0.3s;
     }
 </style>
 
@@ -64,11 +55,25 @@
             current = 0,
             next = current + 1,
             prev = slidesList.length - 1,
-            slideWidth = slider.offsetWidth;
+            slideWidth = 1000;
 
-        init();
+        init({
+            mode : 'fade',
+            interval : 500
+        });
 
-        function init() {
+        function init(obj) {
+
+            if (obj.mode == 'slide')
+                slide(obj);
+            else
+                fade(obj);
+        }
+
+        function slide(obj) {
+
+            slideInit();
+
             setInterval(() => {
 
                 slideToLeft(slidesList[current]);
@@ -78,14 +83,40 @@
                 slideToRight(slidesList[prev]);
 
                 recount();
-            }, 1000);
+            },obj.interval);
         }
 
-        function recount(){
+        function slideInit() {
+
+            slidesList.forEach((it) => {
+                it.style.transform = 'translate(' + slideWidth + 'px)';
+            });
+            slidesList[0].style.transform = 'translate(0px)';
+            slidesList[slidesList.length - 1].style.transform = 'translate(-' + slideWidth + 'px)';
+        }
+
+        function slideToRight(item) {
+
+            item.style.transition = '0s';
+            item.style.transform = 'translate(' + slideWidth + 'px)';
+        }
+
+        function slideToCenter(item) {
+
+            item.style.transition = '0.3s';
+            item.style.transform = 'translate(0px)';
+        }
+
+        function slideToLeft(item) {
+
+            item.style.transform = 'translate(-' + slideWidth + 'px)';
+        }
+
+        function recount() {
 
             current < slidesList.length - 1 ?
                 current++ : current = 0;
-                
+
             next < slidesList.length - 1 ?
                 next++ : next = 0;
 
@@ -93,26 +124,28 @@
                 prev++ : prev = 0;
         }
 
-        function slideToRight(item) {
+        function fade(obj) {
 
-            item.style.transition = '0s';
-            item.style.transform = 'translate(1000px)';
+            fadeProgram();
+
+            setInterval(() => {
+                recount();
+
+                fadeProgram();                
+            }, obj.interval);
         }
 
-        function slideToCenter(item) {
-            
-            item.style.transition = '1s';
-            item.style.transform = 'translate(0px)';
+        function fadeProgram() {
+
+            allFade();
+            slidesList[current].style.opacity = 1;
         }
 
-        function slideToLeft(item) {
+        function allFade(){
 
-            item.style.transform = 'translate(-1000px)';
-        }
-
-        function slidePosition(item) {
-
-            return item.style.transform;
+            slidesList.forEach((it) => {
+                it.style.opacity = 0;
+            });
         }
     })();
 </script>
