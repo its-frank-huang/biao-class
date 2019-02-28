@@ -1,0 +1,32 @@
+<script>
+    ; (function () {
+        'use strict'
+
+        let eachStr = (arr,fn) =>{
+            for (let index = 0; index < arr.length; index++) {
+                const element = arr[index];
+                
+                fn(element);
+            }
+
+        }
+        
+        let exclude = (arr,str) =>{
+            let result =[];
+
+            eachStr(arr,it=>{
+
+                if(it.includes(str))
+                return;
+                    result.push(it);
+
+            });
+
+            console.log(result);
+        }
+
+
+        exclude(['背背山', '六六坡', '背背路'], '背背');
+
+    })();
+</script>

@@ -1,0 +1,118 @@
+<style>
+    img {
+        max-width: 100%;
+    }
+
+    .container {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .slider {
+        position: relative;
+        width: 1000px;
+        height: 500px;
+        border: 5px solid;
+        overflow: hidden;
+    }
+
+    .item {
+        position: absolute;
+        transition: all 1s;
+        transform: translateX(1000px);
+    }
+
+    .item:first-child {
+        transform: translateX(0px);
+    }
+
+    .item:last-child {
+        transform: translateX(-1000px);
+    }
+</style>
+
+<div class="container">
+    <div class="slider">
+        <a href="" class="item">
+            <img src="http://dummyimage.com/1000x500?text=A" alt="A">
+        </a>
+        <a href="" class="item">
+            <img src="http://dummyimage.com/1000x500?text=B" alt="B">
+        </a>
+        <a href="" class="item">
+            <img src="http://dummyimage.com/1000x500?text=C" alt="C">
+        </a>
+        <a href="" class="item">
+            <img src="http://dummyimage.com/1000x500?text=D" alt="D">
+        </a>
+        <a href="" class="item">
+            <img src="http://dummyimage.com/1000x500?text=E" alt="E">
+        </a>
+        <a href="" class="item">
+            <img src="http://dummyimage.com/1000x500?text=F" alt="F">
+        </a>
+    </div>
+</div>
+
+<script>
+    ; (function () {
+        'use strict'
+
+        let slider = document.querySelector('.slider'),
+            slidesList = slider.querySelectorAll('.item'),
+            current = 0,
+            next = current + 1,
+            prev = slidesList.length - 1,
+            slideWidth = slider.offsetWidth;
+
+        init();
+
+        function init() {
+            setInterval(() => {
+
+                slideToLeft(slidesList[current]);
+
+                slideToCenter(slidesList[next]);
+
+                slideToRight(slidesList[prev]);
+
+                recount();
+            }, 1000);
+        }
+
+        function recount(){
+
+            current < slidesList.length - 1 ?
+                current++ : current = 0;
+                
+            next < slidesList.length - 1 ?
+                next++ : next = 0;
+
+            prev < slidesList.length - 1 ?
+                prev++ : prev = 0;
+        }
+
+        function slideToRight(item) {
+
+            item.style.transition = '0s';
+            item.style.transform = 'translate(1000px)';
+        }
+
+        function slideToCenter(item) {
+            
+            item.style.transition = '1s';
+            item.style.transform = 'translate(0px)';
+        }
+
+        function slideToLeft(item) {
+
+            item.style.transform = 'translate(-1000px)';
+        }
+
+        function slidePosition(item) {
+
+            return item.style.transform;
+        }
+    })();
+</script>
