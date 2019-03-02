@@ -55,13 +55,17 @@
 
 <body>
     <button class="save-btn">Save</button>
-    <div class="save-txt">
-        <img src="http://dummyimage.com/200x200" alt="">
-        <div class="panel">
-            <span>Save this?</span>
-            <button>Save!</button>
+    <form class="save-txt">
+        <div class="user-name">
+            User Name:
+                <input type="text">
         </div>
-    </div>
+        <div class="password">
+            Password:
+                <input type="text">
+        </div>
+        <button>Submit</button>
+    </form>
     <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
         nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
@@ -131,98 +135,137 @@
 <script>
     ; (function () {
         'use strict'
-
-        init('.save-btn', '.save-txt','');
-
-        function init(btn, txt, pos) {
+        /*
+         * 默认设置
+         */ 
+        let defaultConfig = {
+            position : 'center',
+            offsetX: 0,
+            offsetY: 0,
+            keyToOpen: 'click',
+            keyToHide: 'Escape',
+        };
+        /*
+         *启动方法
+         */ 
+        init('.save-btn', '.save-txt',{
+            
+        });
+        /*
+         *启动方法定义
+         */ 
+        function init(btn, txt, custom={}) {
 
             let trigger = document.querySelector(btn),
                 mask = document.createElement('div'),
                 showTxt = document.querySelector(txt);
 
+            let config = loadConfig(custom);
             showTxt.classList.add('displayNone');
+            panelFadeIn(trigger,mask, showTxt,config.position);
 
-            trigger.addEventListener('click', function (event) {
-
-                panelFadeIn(mask, showTxt);
-                showTxtPosition(showTxt, pos);
-            });
-
-            mask.addEventListener('click', function (event) {
-
-                panelFadeOut(mask, showTxt);
-            });
+            panelFadeOut(mask, showTxt,config.keyToHide);
 
         }
-
-        function showTxtPosition(showTxt, pos='') {
+        /*
+         *位置方法
+         */ 
+        function showTxtPosition(showTxt, position) {
             let windowWidth = window.innerWidth,
                 windowHeight = window.innerHeight,
                 width = showTxt.offsetWidth,
                 height = showTxt.offsetHeight;
 
-            if(pos==''||pos == 'center'){
-                pos= 'centerX-centerY';
+            if (position == '' || position == 'center') {
+                position = 'centerX-centerY';
             }
 
-            if(!pos.includes('-')){
-                
-                if(pos=='left'||pos=='right'){
-                    pos+= 'centerY';
-                }else if(pos=='top'||pos=='bottom'){
-                    pos+='centerX';
+            if (!position.includes('-')) {
+
+                if (position == 'left' || position == 'right') {
+                    position += 'centerY';
+                } else if (position == 'top' || position == 'bottom') {
+                    position += 'centerX';
                 }
             }
 
-            if(pos.includes('centerY')){
-                showTxt.style.top = (windowHeight / 2) - (height/2) + 'px';
+            if (position.includes('centerY')) {
+                showTxt.style.top = (windowHeight / 2) - (height / 2) + 'px';
             }
 
-            if(pos.includes('centerX')){
-                showTxt.style.left = (windowWidth / 2) - (width/2) + 'px';
+            if (position.includes('centerX')) {
+                showTxt.style.left = (windowWidth / 2) - (width / 2) + 'px';
             }
 
-            if(pos.includes('top')){
+            if (position.includes('top')) {
                 showTxt.style.top = 0;
             }
 
-            if(pos.includes('bottom')){
+            if (position.includes('bottom')) {
                 showTxt.style.bottom = 0;
             }
 
-            if(pos.includes('left')){
+            if (position.includes('left')) {
                 showTxt.style.left = 0;
             }
 
-            if(pos.includes('right')){
+            if (position.includes('right')) {
                 showTxt.style.right = 0;
             }
 
         }
-
-        function panelFadeIn(mask, showTxt) {
-
-            mask.classList.add('mask');
-            setTimeout(function () {
-
-                showTxt.style.opacity = 1;
-                mask.style.opacity = 0.4;
-            }, 0);
-
-            document.body.appendChild(mask);
-            showTxt.classList.add('show-txt');
+        /*
+         *加载设置
+         */ 
+        function loadConfig(custom){
+            let config = Object.assign({},defaultConfig,custom);
+            return config;
         }
+        /*
+         *出现方法
+         */ 
+        function panelFadeIn(trigger,mask, showTxt, position) {
+            trigger.addEventListener('click', function (event) {
+                mask.classList.add('mask');
+                setTimeout(function () {
 
-        function panelFadeOut(mask, showTxt) {
+                    showTxt.style.opacity = 1;
+                    mask.style.opacity = 0.4;
+                }, 0);
 
+                document.body.appendChild(mask);
+                showTxt.classList.add('show-txt');
+
+                showTxtPosition(showTxt, position);
+            });
+        }
+        /*
+         *退出方法
+         */ 
+        function panelFadeOut(mask, showTxt,key) {
+            
+            window.addEventListener('keyup',function(event){
+                if(event.key == key){
+                    invisble(mask,showTxt);
+                }
+            });
+            
+            mask.addEventListener('click', function (event) {
+                invisble(mask,showTxt);
+            });
+            
+        }
+        
+        function invisble(mask,showTxt){
             mask.style.opacity = 0;
             showTxt.style.opacity = 0;
-
+    
             setTimeout(function () {
-
+    
                 mask.classList.remove('mask');
                 showTxt.classList.remove('show-txt');
             }, 500);
+
         }
     })();
 </script>
