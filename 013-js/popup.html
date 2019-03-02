@@ -25,10 +25,7 @@
         opacity: 0;
         display: inline-block;
         position: fixed;
-        left: 50%;
-        top: 50%;
         transition: all 0.5s;
-        transform: translate(-50%, -50%);
     }
 
     .show-txt>img {
@@ -135,9 +132,9 @@
     ; (function () {
         'use strict'
 
-        init('.save-btn', '.save-txt');
+        init('.save-btn', '.save-txt','');
 
-        function init(btn, txt) {
+        function init(btn, txt, pos) {
 
             let trigger = document.querySelector(btn),
                 mask = document.createElement('div'),
@@ -147,38 +144,85 @@
 
             trigger.addEventListener('click', function (event) {
 
-                panelFadeIn(mask,showTxt);
+                panelFadeIn(mask, showTxt);
+                showTxtPosition(showTxt, pos);
             });
 
             mask.addEventListener('click', function (event) {
 
-                panelFadeOut(mask,showTxt);
+                panelFadeOut(mask, showTxt);
             });
+
         }
 
-        function panelFadeIn(mask,showTxt){
+        function showTxtPosition(showTxt, pos='') {
+            let windowWidth = window.innerWidth,
+                windowHeight = window.innerHeight,
+                width = showTxt.offsetWidth,
+                height = showTxt.offsetHeight;
 
-                mask.classList.add('mask');
-                setTimeout(function(){
+            if(pos==''||pos == 'center'){
+                pos= 'centerX-centerY';
+            }
+
+            if(!pos.includes('-')){
+                
+                if(pos=='left'||pos=='right'){
+                    pos+= 'centerY';
+                }else if(pos=='top'||pos=='bottom'){
+                    pos+='centerX';
+                }
+            }
+
+            if(pos.includes('centerY')){
+                showTxt.style.top = (windowHeight / 2) - (height/2) + 'px';
+            }
+
+            if(pos.includes('centerX')){
+                showTxt.style.left = (windowWidth / 2) - (width/2) + 'px';
+            }
+
+            if(pos.includes('top')){
+                showTxt.style.top = 0;
+            }
+
+            if(pos.includes('bottom')){
+                showTxt.style.bottom = 0;
+            }
+
+            if(pos.includes('left')){
+                showTxt.style.left = 0;
+            }
+
+            if(pos.includes('right')){
+                showTxt.style.right = 0;
+            }
+
+        }
+
+        function panelFadeIn(mask, showTxt) {
+
+            mask.classList.add('mask');
+            setTimeout(function () {
 
                 showTxt.style.opacity = 1;
                 mask.style.opacity = 0.4;
-                },0);
-                
-                document.body.appendChild(mask);
-                showTxt.classList.add('show-txt');
+            }, 0);
+
+            document.body.appendChild(mask);
+            showTxt.classList.add('show-txt');
         }
 
-        function panelFadeOut(mask,showTxt){
+        function panelFadeOut(mask, showTxt) {
 
-                mask.style.opacity = 0;
-                showTxt.style.opacity = 0;
-                
-                setTimeout(function(){
+            mask.style.opacity = 0;
+            showTxt.style.opacity = 0;
+
+            setTimeout(function () {
 
                 mask.classList.remove('mask');
                 showTxt.classList.remove('show-txt');
-                },500);
+            }, 500);
         }
     })();
 </script>
