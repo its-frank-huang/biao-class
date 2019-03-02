@@ -1,0 +1,184 @@
+<style>
+    .displayNone {
+        display: none;
+    }
+
+    .mask {
+        background: #000;
+        opacity: 0;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        display: block;
+        transition: all 0.5s;
+    }
+
+
+    .show-txt {
+        border: 3px dashed;
+        z-index: 1000;
+        background: #fff;
+        padding: 10px;
+        opacity: 0;
+        display: inline-block;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transition: all 0.5s;
+        transform: translate(-50%, -50%);
+    }
+
+    .show-txt>img {
+        display: block;
+        width: 100%;
+    }
+
+    .show-txt>.panel {
+        margin-top: 10px;
+    }
+
+    .show-txt>.panel::before,
+    .show-txt>.panel::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .show-txt>.panel>span {
+        float: left;
+    }
+
+    .show-txt>.panel>button {
+        float: right;
+    }
+</style>
+
+<body>
+    <button class="save-btn">Save</button>
+    <div class="save-txt">
+        <img src="http://dummyimage.com/200x200" alt="">
+        <div class="panel">
+            <span>Save this?</span>
+            <button>Save!</button>
+        </div>
+    </div>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sed delectus eum possimus ea repellat adipisci
+        nesciunt, itaque sunt, veniam deserunt alias? Labore, eum a. Dolores aliquid cupiditate corporis distinctio?
+    </p>
+</body>
+
+<script>
+    ; (function () {
+        'use strict'
+
+        init('.save-btn', '.save-txt');
+
+        function init(btn, txt) {
+
+            let trigger = document.querySelector(btn),
+                mask = document.createElement('div'),
+                showTxt = document.querySelector(txt);
+
+            showTxt.classList.add('displayNone');
+
+            trigger.addEventListener('click', function (event) {
+
+                panelFadeIn(mask,showTxt);
+            });
+
+            mask.addEventListener('click', function (event) {
+
+                panelFadeOut(mask,showTxt);
+            });
+        }
+
+        function panelFadeIn(mask,showTxt){
+
+                mask.classList.add('mask');
+                setTimeout(function(){
+
+                showTxt.style.opacity = 1;
+                mask.style.opacity = 0.4;
+                },0);
+                
+                document.body.appendChild(mask);
+                showTxt.classList.add('show-txt');
+        }
+
+        function panelFadeOut(mask,showTxt){
+
+                mask.style.opacity = 0;
+                showTxt.style.opacity = 0;
+                
+                setTimeout(function(){
+
+                mask.classList.remove('mask');
+                showTxt.classList.remove('show-txt');
+                },500);
+        }
+    })();
+</script>
