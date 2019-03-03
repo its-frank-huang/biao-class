@@ -1,0 +1,133 @@
+<style>
+    .popout {
+        display: inline-block;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, .3);
+        padding: 8px;
+        position: fixed;
+    }
+
+    button {
+        margin: 30px;
+    }
+</style>
+
+<button data-popout="YO" data-popoutposition="top-left" data-offsetx="-10" data-offsety="-10">YO</button>
+<button data-popout="Ha" data-popoutposition="center">Ha</button>
+<button data-popout='<img src="http://dummyimage.com/200x200">' data-popoutPosition="left">Ka</button>
+<button data-popout="Ka">Ka</button>
+<script>
+    ; (function () {
+        'use strict'
+        let lastPopout,
+            existPopout = new Set();
+
+        boot();
+        /*
+         *启动方法
+         */
+        function boot() {
+            bindClick();
+        }
+        /*
+         *绑定点击事件
+         *如果点击的target有dataset.popout，就将lastpopout隐藏并让此popout成为lastpopout，在existtarget中加入此target
+         */
+        function bindClick() {
+            document.addEventListener('click', e => {
+                let target = e.target,
+                    content = target.dataset.popout;
+
+                if (content) {
+                    lastPopout && hide(lastPopout);
+                    show(target, content);
+                    existPopout.add(target);
+                } else {
+                    hideAll();
+                }
+            });
+        }
+        /*
+         *如果此target已经创建了popout（检查target是否有$popout）
+         *则将此target的popout显示
+         *否则创建一个popout，并将其绑定在target的$popout属性，定位新创建的popout，将lastpopout设置为其
+         */
+        function show(target, content) {
+            if (target.$popout) {
+                lastPopout = target.$popout;
+                target.$popout.style.display = 'inline-block';
+            } else {
+                let popout = document.createElement('div');
+                popout.classList.add('popout');
+                popout.style.display = 'none';
+                popout.innerHTML = content;
+                document.body.appendChild(popout);
+                target.$popout = popout;
+                setTimeout(() => {
+                    popout.style.display = 'inline-block';
+                    position(target, popout);
+                }, 20);
+                lastPopout = popout;
+            }
+        }
+        /*
+         *隐藏传入的参数popout
+         */
+        function hide(el) {
+            el.style.display = "none";
+        }
+        /*
+         *隐藏全部popout
+         */
+        function hideAll() {
+            existPopout.forEach(element => {
+                element.$popout.style.display = 'none';
+            });
+        }
+        /*
+         *定位popout
+         */
+        function position(target, popout) {
+            let targetPos = target.getBoundingClientRect(),
+                pos = target.dataset.popoutposition,
+                offsetX = parseFloat(target.dataset.offsetx),
+                offsetY = parseFloat(target.dataset.offsety);
+            if (!pos)
+                pos = 'bottom';
+            if(!offsetX)
+                offsetX = 0;
+            if(!offsetY)
+                offsetY = 0;
+            if (!pos.includes('-')) {
+                switch (pos) {
+                    case 'top':
+                    case 'bottom':
+                        popout.style.left = targetPos.left + 'px';
+                        break;
+                    case 'left':
+                    case 'right':
+                        popout.style.top = targetPos.top + 'px';
+                        break;
+                }
+            }
+
+            if (pos.includes('top')) {
+                popout.style.top = targetPos.top - popout.offsetHeight + offsetY + 'px';
+            }
+            if (pos.includes('bottom')) {
+                popout.style.top = targetPos.top + target.offsetHeight + offsetY  + 'px';
+            }
+            if (pos.includes('left')) {
+                popout.style.left = targetPos.left - popout.offsetWidth + offsetX + 'px';
+            }
+            if (pos.includes('right')) {
+                popout.style.left = targetPos.left + target.offsetWidth + offsetX + 'px';
+            }
+            if (pos == 'center') {
+                popout.style.left = targetPos.left + (target.offsetWidth / 2) - (popout.offsetWidth / 2) + 'px';
+                popout.style.top = targetPos.top + (target.offsetHeight / 2) - (popout.offsetHeight / 2) + 'px';
+            }
+        }
+    })();
+</script>
