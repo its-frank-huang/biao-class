@@ -1,109 +1,93 @@
-<style>
-    .toolbar {
-        text-align: center;
-        margin: 10px;
-    }
-
-    table {
-        margin-left: auto;
-        margin-right: auto;
-        border-collapse: collapse;
-    }
-
-    td,
-    th {
-        border: 1px solid;
-        padding: 10px 10px;
+style>
+    input {
+        padding: 2px;
+        margin-bottom: 2px;
     }
 </style>
-<div class="toolbar">
-    <h1>Student Table</h1>
-    <div class="score-filter">
-        <button class="all" data-max="100" data-min="0">All</button>
-        <button class="good" data-max="100" data-min="80">good</button>
-        <button class="mediocre" data-max="80" data-min="60">mediocre</button>
-        <button class="poor" data-max="60" data-min="0">poor</button>
+<form id="a">
+    <div>
+        <label>name:</label>
+        <input type="text" name="name" value="王花花">
     </div>
-</div>
-<table>
-    <thead>
-        <th>Name</th>
-        <th>Gender</th>
-        <th>Score</th>
-        <th>Operation</th>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-
+    <div>
+        <label>age:</label>
+        <input type="number" name="age" value="18">
+    </div>
+    <div>
+        gender:
+        <label>male
+            <input type="radio" name="gender" value="male" checked>
+        </label>
+        <label>female
+            <input type="radio" name="gender" value="female">
+        </label>
+    </div>
+    <div>
+        orientation:
+        <label>male
+            <input type="checkbox" name="orientation" value="male" checked>
+        </label>
+        <label>female
+            <input type="checkbox" name="orientation" value="female">
+        </label>
+        <label>car
+            <input type="checkbox" name="orientation" value="car" checked>
+        </label>
+    </div>
+    <div>
+        <label>height:</label>
+        <input type="number" name="height" value="4">
+    </div>
+    <button>go</button>
+</form>
+<form id="b">
+    <div>
+        <label>name:</label>
+        <input type="text" name="name" placeholder="name">
+    </div>
+    <div>
+        <label>age:</label>
+        <input type="number" name="age" placeholder="age">
+    </div>
+    <div>
+        gender:
+        <label>male
+            <input type="radio" name="gender" value="male">
+        </label>
+        <label>female
+            <input type="radio" name="gender" value="female">
+        </label>
+    </div>
+    <div>
+        orientation:
+        <label>male
+            <input type="checkbox" name="orientation" value="male">
+        </label>
+        <label>female
+            <input type="checkbox" name="orientation" value="female">
+        </label>
+        <label>car
+            <input type="checkbox" name="orientation" value="car" >
+        </label>
+    </div>
+    <div>
+        <label>height:</label>
+        <input type="number" name="height" placeholder="height">
+    </div>
+    <button>go</button>
+</form>
+<script src="tablePlugin.js"></script>
 <script>
-    ; (function () {
-        'use strict'
-        let users = [
-            {
-                id: 0,   
-                name: 'Ada',
-                gender: 'Female',
-                score: '81'
-            },
-            {
-                id: 1,
-                name: 'Ben',
-                gender: 'Male',
-                score: '64'
-            },
-            {
-                id: 2,
-                name: 'Carl',
-                gender: 'Male',
-                score: '5'
-            }
-        ],
-            tbody = document.querySelector('tbody'),
-            range = {
-                max: 100,
-                min: 0
-            };
-        boot();
-        function boot() {
-            render(range);
-            bindEvents();
+   ;(function(){
+      'use strict'
+      let data = {
+            name: 'www',
+            age: 2,
+            gender: 'female',
+            orientation: ['car','female'],
+            height: 4,
         }
-        function render(range) {
-            tbody.innerHTML = '';
-            users.forEach((user, i) => {
-                let tr = document.createElement('tr');
-
-                if(user.score< +range.min || user.score> +range.max){
-                    return;
-                }
-                tr.innerHTML = `
-                <td>${user.name}</td>
-                <td>${user.gender}</td>
-                <td>${user.score}</td>
-                <td><button class='del'>delete</button></td>
-                `;
-
-
-                tbody.appendChild(tr);
-
-                let button = tr.querySelector('.del');
-                button.addEventListener('click', e => {
-                    users.splice(i, 1);
-                    render();
-                    tr.remove();
-                });
-            });
-        }
-        function bindEvents() {
-            let scoreFilter = document.querySelector('.score-filter');
-
-            scoreFilter.addEventListener('click',e=>{
-                if(e.target.nodeName != 'BUTTON')
-                    return;
-                render(e.target.dataset);
-            });
-            
-        }
-    })();
+        tablePlugin.getData('#a');
+        tablePlugin.putData(data,'#b');
+   })();
 </script>
