@@ -1,0 +1,59 @@
+<style>
+    .dropdown {
+        border: 5px solid;
+        max-width: 200px;
+    }
+
+    .dropdown>* {
+        display: block;
+        padding: 10px;
+    }
+</style>
+<div class="dropdown">
+    <!-- <a href="">11</a> -->
+</div>
+<script>
+    ; (function () {
+    'use strict'
+    let list = [
+        {
+            text: 'a',
+            href: 'a.com'
+        },
+        {
+            text: 'b',
+            href: 'b.com'
+        },
+        {
+            text: 'c',
+            href: 'c.com'
+        },
+        {
+            text: 'd',
+            href: 'd.com'
+        },
+    ],
+        dropdown = document.querySelector('.dropdown');
+    boot();
+    function boot() {
+        render();
+        setInterval(() => {
+            list.push({
+                text:'e',
+                href:'e.com'
+            });
+            render();
+        }, 500);
+    }
+    function render() {
+
+        dropdown.innerHTML = '';
+        list.forEach(it=>{
+            let a = document.createElement('a');
+            a.innerText = it.text;
+            a.href = it.href;
+            dropdown.appendChild(a);
+        });
+    }
+})();
+</script>

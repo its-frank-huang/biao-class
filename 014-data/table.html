@@ -1,0 +1,105 @@
+<style>
+    .toolbar {
+        text-align: center;
+        margin: 10px;
+    }
+
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        border-collapse: collapse;
+    }
+
+    td,
+    th {
+        border: 1px solid;
+        padding: 10px 10px;
+    }
+</style>
+<div class="toolbar">
+    <h1>Student Table</h1>
+    <div class="score-filter">
+        <button class="all" data-max="100" data-min="0">All</button>
+        <button class="good" data-max="100" data-min="80">good</button>
+        <button class="mediocre" data-max="80" data-min="60">mediocre</button>
+        <button class="poor" data-max="60" data-min="0">poor</button>
+    </div>
+</div>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Score</th>
+        <th>Operation</th>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+    ; (function () {
+        'use strict'
+        let users = [
+            {
+                name: 'Ada',
+                gender: 'Female',
+                score: '81'
+            },
+            {
+                name: 'Ben',
+                gender: 'Male',
+                score: '64'
+            },
+            {
+                name: 'Carl',
+                gender: 'Male',
+                score: '5'
+            }
+        ],
+            tbody = document.querySelector('tbody'),
+            range = {
+                max: 100,
+                min: 0
+            };
+        boot();
+        function boot() {
+            render(range);
+            bindEvents();
+        }
+        function render(range) {
+            tbody.innerHTML = '';
+            users.forEach((user, i) => {
+                let tr = document.createElement('tr');
+
+                if(user.score< +range.min || user.score> +range.max){
+                    return;
+                }
+                tr.innerHTML = `
+                <td>${user.name}</td>
+                <td>${user.gender}</td>
+                <td>${user.score}</td>
+                <td><button class='del'>delete</button></td>
+                `;
+
+
+                tbody.appendChild(tr);
+
+                let button = tr.querySelector('.del');
+                button.addEventListener('click', e => {
+                    users.splice(i, 1);
+                    tr.remove();
+                });
+            });
+        }
+        function bindEvents() {
+            let scoreFilter = document.querySelector('.score-filter');
+
+            scoreFilter.addEventListener('click',e=>{
+                if(e.target.nodeName != 'BUTTON')
+                    return;
+                render(e.target.dataset);
+            });
+            
+        }
+    })();
+</script>
