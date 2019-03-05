@@ -1,0 +1,147 @@
+<style>
+    input {
+        padding: 2px;
+        margin-bottom: 2px;
+    }
+</style>
+<form id="a">
+    <div>
+        <label>name:</label>
+        <input type="text" name="name" value="王花花">
+    </div>
+    <div>
+        <label>age:</label>
+        <input type="number" name="age" value="18">
+    </div>
+    <div>
+        gender:
+        <label>male
+            <input type="radio" name="gender" value="male" checked>
+        </label>
+        <label>female
+            <input type="radio" name="gender" value="female">
+        </label>
+    </div>
+    <div>
+        orientation:
+        <label>male
+            <input type="checkbox" name="orientation" value="male" checked>
+        </label>
+        <label>female
+            <input type="checkbox" name="orientation" value="female">
+        </label>
+        <label>car
+            <input type="checkbox" name="orientation" value="car" checked>
+        </label>
+    </div>
+    <div>
+        <label>height:</label>
+        <input type="number" name="height" value="4">
+    </div>
+    <button>go</button>
+</form>
+<form id="b">
+    <div>
+        <label>name:</label>
+        <input type="text" name="name" placeholder="name">
+    </div>
+    <div>
+        <label>age:</label>
+        <input type="number" name="age" placeholder="age">
+    </div>
+    <div>
+        gender:
+        <label>male
+            <input type="radio" name="gender" value="male">
+        </label>
+        <label>female
+            <input type="radio" name="gender" value="female">
+        </label>
+    </div>
+    <div>
+        orientation:
+        <label>male
+            <input type="checkbox" name="orientation" value="male">
+        </label>
+        <label>female
+            <input type="checkbox" name="orientation" value="female">
+        </label>
+        <label>car
+            <input type="checkbox" name="orientation" value="car" >
+        </label>
+    </div>
+    <div>
+        <label>height:</label>
+        <input type="number" name="height" placeholder="height">
+    </div>
+    <button>go</button>
+</form>
+<script>
+    ; (function () {
+        'use strict'
+        let data = {
+            name: 'www',
+            age: 2,
+            gender: 'female',
+            orientation: ['car','female'],
+            height: 4,
+        }
+        function getData(formid) {
+            let form = document.querySelector(formid),
+                data = {},
+                inputs = form.querySelectorAll('[name]');
+
+            inputs.forEach(element => {
+                switch (element.type) {
+                    case "number":
+                        data[element.name] = parseFloat(element.value);
+                        break;
+                    case 'text':
+                        data[element.name] = element.value;
+                        break;
+                    case 'radio':
+                        if (!element.checked)
+                            return;
+                        data[element.name] = element.value;
+                        break;
+                    case 'checkbox':
+                        if (!Array.isArray(data[element.name]))
+                            data[element.name] = [];
+                        if (!element.checked)
+                            return;
+                        data[element.name].push(element.value);
+                        break;
+                }
+            });
+            return data;
+        }
+
+        function putData(data, formid) {
+            let form = document.querySelector(formid);
+            for (const key in data) {
+                let input = form.querySelector(`[name=${key}]`);
+                switch (input.type) {
+                    case 'radio':
+                    let radio = form.querySelector(`[value=${data[key]}]`)
+                        if(radio.value == data[key])
+                            radio.checked = true;
+                    break;
+                    case 'checkbox':
+                    data[key].forEach(it=>{
+                        let checkbox = form.querySelector(`[name=${key}][value=${it}]`);
+                            checkbox && (checkbox.checked = true);
+                    });
+                    
+                    break;
+                    default:
+                        input.value = data[key];
+                        break;
+                }
+            }
+        }
+
+
+        console.log(getData('#a'));
+        putData(data, '#b');
+    })();
+</script>
