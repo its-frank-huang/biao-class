@@ -1,0 +1,30 @@
+<style>
+    input{
+        width: 100%;
+        padding: 2px;
+        margin-bottom: 2px;
+    }
+</style>
+<form>
+    <input type="text" name="name">
+    <input type="text" name="age">
+    <input type="text" name="gender">
+    <input type="text" name="height">
+    <button>go</button>
+</form>
+<script>
+   ;(function(){
+      'use strict'
+      let data = {
+          name:'www',
+          age:2,
+          gender:3,
+          height:4,
+      }
+      for (const key in data) {
+          let input = document.querySelector(`[name=${key}]`);
+          input.value = data[key];
+      }
+      
+   })();
+</script>
