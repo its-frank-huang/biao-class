@@ -41,16 +41,19 @@
         'use strict'
         let users = [
             {
+                id: 0,   
                 name: 'Ada',
                 gender: 'Female',
                 score: '81'
             },
             {
+                id: 1,
                 name: 'Ben',
                 gender: 'Male',
                 score: '64'
             },
             {
+                id: 2,
                 name: 'Carl',
                 gender: 'Male',
                 score: '5'
@@ -87,6 +90,7 @@
                 let button = tr.querySelector('.del');
                 button.addEventListener('click', e => {
                     users.splice(i, 1);
+                    render();
                     tr.remove();
                 });
             });
