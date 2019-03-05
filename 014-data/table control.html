@@ -1,0 +1,26 @@
+<style>
+    input{
+        width: 100%;
+        padding: 2px;
+        margin-bottom: 2px;
+    }
+</style>
+<form>
+    <input type="text" name="name" value="1">
+    <input type="text" name="age" value="2">
+    <input type="text" name="gender" value="3">
+    <input type="text" name="height" value="4">
+    <button>go</button>
+</form>
+<script>
+   ;(function(){
+      'use strict'
+     let inputs = document.querySelectorAll('[name]'),
+         data = {};
+     inputs.forEach(element => {
+         data[element.name] = element.value;
+     });
+
+     console.log(data);
+   })();
+</script>
