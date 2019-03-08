@@ -1,0 +1,60 @@
+<style>
+    table {
+        width: 1000px;
+        margin-top: 5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-collapse: collapse;
+        font-size: 1.3em;
+    }
+
+    th,
+    td {
+        border: 2px solid #000;
+        padding: 1.3em .5em;
+    }
+</style>
+<table id="table">
+</table>
+<script src="tableRender.js"></script>
+<script>
+    ; (function () {
+        'use strict'
+        let table = document.querySelector('#table'),
+            struct = {
+                name: '姓名',
+                gender: '性别',
+                email: '邮箱',
+                phone: '电话',
+            },
+            data = [
+                {
+                    gender: '女',
+                    name: '王花花',
+                    email: 'whh@mail.com',
+                    phone: '18899991111',
+                    kkk:''
+                },
+                {
+                    name: '李栓蛋',
+                    gender: '男',
+                    phone: '18899992222',
+                    email: 'lsd@mail.com',
+                },
+                {
+                    name: '赵铁柱',
+                    gender: '男',
+                    email: 'ztz@mail.com',
+                    phone: '18899993333'
+                },
+                {
+                    name: '林翠花',
+                    gender: '女',
+                    email: 'lch@mail.com',
+                    phone: '18899994444'
+                }
+            ];
+        $render.boot('#table', struct, data);
+    })();
+
+</script>

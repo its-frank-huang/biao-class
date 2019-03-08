@@ -8,7 +8,9 @@
         betweenLength,
         between
     };
-
+    /**
+     * @param  {} username
+     */
     function isUsername(username) {
         if (!betweenLength(username, 4, 20))
             return false;

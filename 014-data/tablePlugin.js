@@ -4,9 +4,9 @@
         getData,
         putData
     }
-    /*
-     * @param {HTMLFormElement} form
-     */ 
+    /**
+     * @param  {HTMLElement} formid
+     */
     function getData(formid) {
         let form = document.querySelector(formid),
             data = {},
@@ -36,7 +36,10 @@
         });
         return data;
     }
-
+    /**
+     * @param  {object} data
+     * @param  {HTMLElement} formid
+     */
     function putData(data, formid) {
         let form = document.querySelector(formid);
         for (const key in data) {
