@@ -1,0 +1,166 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    form {
+        font-family: sans-serif;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.2em;
+        margin-top: 2em;
+    }
+
+    label,
+    input,
+    button {
+        display: block;
+        margin-bottom: .5em;
+    }
+
+    input,
+    button {
+        margin-top: .5em;
+        width: 100%;
+        border: 2px solid #000;
+        padding: .5em .2em;
+        font-size: 1.1em;
+    }
+
+    button {
+        color: #fff;
+        background: #000;
+    }
+
+    .invalid {
+        border-color: #c10;
+        outline: none;
+    }
+
+    .error>* {
+        margin-bottom: .5em;
+        background: #f99;
+        color: #c10;
+        padding: .5em;
+        font-size: .8em;
+    }
+</style>
+<form novalidate>
+    <label>
+        User Name:
+        <input type="text" name="username" placeholder="User Name" value="frank">
+    </label>
+    <label>
+        Email:
+        <input type="text" name="email" placeholder="Email" value="frank@gmail.com">
+    </label>
+    <label>
+        Phone:
+        <input type="text" name="phone" placeholder="Phone" value="18899990000">
+    </label>
+    <label>
+        Password:
+        <input type="password" name="password" placeholder="Password" value="1233456">
+    </label>
+    <div class="error"></div>
+    <button>Submit</button>
+</form>
+
+<script src="validate.js"></script>
+<script>
+    ; (function () {
+        'use strict'
+        let form = document.querySelector('form'),
+            inputs = form.querySelectorAll('[name]'),
+            data = {},
+            errorList = [],
+            haveSubmit = false;
+        boot();
+        function boot() {
+            bindEvents();
+        }
+        function bindEvents() {
+            form.addEventListener('submit', e => {
+
+                e.preventDefault();
+
+                inputs.forEach(it => {
+                    data[it.name] = it.value;
+                });
+                validate(data);
+                haveSubmit = true;
+            });
+            document.addEventListener('keyup', e => {
+                if (haveSubmit) {
+                    console.log(111);
+                    inputs.forEach(it => {
+                        data[it.name] = it.value;
+                    });
+                    validate(data);
+                }
+            });
+        }
+
+        function validate(data) {
+            let error = form.querySelector('.error');
+            error.innerHTML = "";
+            errorList = [];
+            for (const name in data) {
+                if (!isValid(name))
+                    inValid(name);
+                else
+                    valid(name);
+            }
+            if (errorList.length) {
+                errorList.forEach(it => {
+                    let temp = document.createElement('div');
+                    temp.innerText = it;
+                    error.appendChild(temp);
+                })
+            }
+        }
+
+        function isValid(name) {
+            switch (name) {
+                case 'username':
+                    if (!$validate.isUsername(data[name])) {
+                        errorList.push('Incorrect username format , Username should be 4 to 20 characters long.');
+                        return false;
+                    }
+                    return true;
+                    break;
+                case 'email':
+                    if (!$validate.isEmail(data[name])) {
+                        errorList.push('Incorrect email format.');
+                        return false;
+                    }
+                    return true;
+                    break;
+                case 'phone':
+                    if (!$validate.isPhone(data[name])) {
+                        errorList.push('Incorrect phone format.');
+                        return false;
+                    }
+                    return true;
+                    break;
+                case 'password':
+                    if (!$validate.isPassword(data[name])) {
+                        errorList.push('Incorrect password format , password should be 6 to 20 characters long.');
+                        return false;
+                    }
+                    return true;
+                    break;
+
+            }
+        }
+
+        function inValid(name) {
+            form.querySelector(`[name=${name}]`).classList.add('invalid');
+        }
+
+        function valid(name) {
+            form.querySelector(`[name=${name}]`).classList.remove('invalid');
+        }
+    })();
+</script>
