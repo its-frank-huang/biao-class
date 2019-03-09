@@ -118,8 +118,29 @@
                     data.splice(index + 2, 0, item);
                     data.splice(index, 1);
                     datum.tr.nextElementSibling.insertAdjacentElement('afterend', datum.tr);
-                    console.log(data);
                 }
+            },
+            change: {
+                name: 'change',
+                action(datum) {
+                    let tds  = datum.tr.querySelectorAll('td');
+                    let index = 0;
+                    for(let col in struct){
+                        tds[index].innerHTML = `<input name="${col}" value="${datum[col]}"></input>`;
+                        index++;
+                    }
+
+                    datum.tr.addEventListener('keyup',e=>{
+                        if(e.key != 'Enter'){
+                            return;
+                        }
+                        let inputs = datum.tr.querySelectorAll('input');
+                        inputs.forEach(input=>{
+                            datum[input.name] = input.value;
+                            input.parentNode.innerHTML = datum[input.name];
+                        });
+                    });
+                }   
             }
         });
     })();

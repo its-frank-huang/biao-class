@@ -4,7 +4,7 @@
     let table, struct, data, thead, tbody, operations;
 
     //expose variables to global
-    window.$render = { boot };
+    window.$render = { boot, render };
 
     /**
      * @description boot
