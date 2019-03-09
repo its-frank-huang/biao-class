@@ -1,0 +1,59 @@
+<style>
+    body {
+        font-size: 18px;
+        line-height: 20px;
+    }
+
+    label {
+        margin: 10px;
+    }
+
+    .a-radio {
+        display: none;
+    }
+
+    .b-radio {
+        display: inline-block;
+        border: 1px solid #ccc;
+        width: 16px;
+        height: 16px;
+        border-radius: 2px;
+        vertical-align: middle;
+        margin-right: 5px;
+        position: relative;
+    }
+
+    .b-radio:before {
+        content: '';
+        font-size: 0;
+        width: 10px;
+        height: 10px;
+        background: rgb(143, 188, 238);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -5px;
+        margin-top: -5px;
+        border-radius: 2px;
+        display: none;
+    }
+
+    .a-radio:checked~.b-radio:before {
+        display: block;
+    }
+</style>
+
+<label>
+    <input type="radio" name="1" id="" class="a-radio">
+    <span class="b-radio"></span>好
+</label>
+
+<label>
+    <input type="radio" name="1" id="" class="a-radio">
+    <span class="b-radio"></span>很好
+</label>
+
+<label>
+    <input type="radio" name="1" id="" class="a-radio">
+    <span class="b-radio"></span>很棒
+</label>

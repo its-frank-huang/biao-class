@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Manage</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: sans-serif;
+            outline: none;
+        }
+
+        hr {
+            margin: 2em 0;
+        }
+
+        main {
+            width: 1000px;
+            margin-top: 5em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        main>*{
+            width: 50%;
+            float: left;
+        }
+        form>* {
+            display: block;
+            width: 100%;
+            padding: 1em .5em;
+            margin-bottom: .5em;
+            font-size: inherit;
+        }
+
+        input,
+        button {
+            border: 2px solid #000;
+            background: #fff;
+        }
+
+        button {
+            color: #fff;
+            background: #000;
+        }
+
+        label {
+            padding-right: 1em;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type="radio"]+span {
+            content: "";
+            margin-left: -.5em;
+            margin-right: .5em;
+            display: inline-block;
+            border: #000 2px solid;
+            padding: .2em;
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        input[type="radio"]:checked+span::before {
+            content: "";
+            margin-left: -.25em;
+            margin-top: -.25em;
+            width: .5em;
+            height: .5em;
+            left: 50%;
+            top: 50%;
+            position: absolute;
+            background: #000;
+        }
+
+        table {
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+        .table{
+            padding-left: 3em;
+        }
+        th,td{
+            border-bottom: 1px solid #888;
+            padding: 1em .2em;
+        }
+        th{
+            padding-top: 0;
+            border-bottom: 2px solid #222; 
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="form">
+            <h1>User Manage</h1>
+            <form novalidate>
+                <input type="text" placeholder="Name">
+                <div>
+                    <label>
+                        <input type="radio" name="gender" value="Male">
+                        <span></span><span>Male</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="Female">
+                        <span></span><span>Female</span>
+                    </label>
+                </div>
+                <input type="text" placeholder="Email">
+                <input type="text" placeholder="Phone">
+                <button>Submit</button>
+            </form>
+        </div>
+        <div class="table">
+            <h1>User List</h1>
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>gender</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alice</td>
+                        <td>Female</td>
+                        <td>alice@mail.com</td>
+                        <td>18899991111</td>
+                    </tr>
+                    <tr>
+                        <td>Bob</td>
+                        <td>Male</td>
+                        <td>bob@mail.com</td>
+                        <td>18899992222</td>
+                    </tr>
+                    <tr>
+                        <td>Cathy</td>
+                        <td>Female</td>
+                        <td>cathy@mail.com</td>
+                        <td>18899993333</td>
+                    </tr>
+                    <tr>
+                        <td>Dave</td>
+                        <td>Male</td>
+                        <td>dave@mail.com</td>
+                        <td>18899994444</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>
