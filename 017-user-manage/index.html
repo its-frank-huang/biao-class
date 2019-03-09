@@ -23,10 +23,12 @@
             margin-left: auto;
             margin-right: auto;
         }
-        main>*{
+
+        main>* {
             width: 50%;
             float: left;
         }
+
         form>* {
             display: block;
             width: 100%;
@@ -84,16 +86,20 @@
             text-align: left;
             border-collapse: collapse;
         }
-        .table{
+
+        .table {
             padding-left: 3em;
         }
-        th,td{
+
+        th,
+        td {
             border-bottom: 1px solid #888;
             padding: 1em .2em;
         }
-        th{
+
+        th {
             padding-top: 0;
-            border-bottom: 2px solid #222; 
+            border-bottom: 2px solid #222;
         }
     </style>
 </head>
@@ -101,9 +107,9 @@
 <body>
     <main>
         <div class="form">
-            <h1>User Manage</h1>
-            <form novalidate>
-                <input type="text" placeholder="Name">
+            <h1>Add User</h1>
+            <form novalidate id="form1">
+                <input type="text" placeholder="Username" name="username">
                 <div>
                     <label>
                         <input type="radio" name="gender" value="Male">
@@ -114,8 +120,8 @@
                         <span></span><span>Female</span>
                     </label>
                 </div>
-                <input type="text" placeholder="Email">
-                <input type="text" placeholder="Phone">
+                <input type="text" placeholder="Email" name="email">
+                <input type="number" placeholder="Balance" name="balance">
                 <button>Submit</button>
             </form>
         </div>
@@ -123,7 +129,7 @@
             <h1>User List</h1>
             <table>
                 <thead>
-                    <th>Name</th>
+                    <th>Username</th>
                     <th>gender</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -133,30 +139,54 @@
                         <td>Alice</td>
                         <td>Female</td>
                         <td>alice@mail.com</td>
-                        <td>18899991111</td>
+                        <td>100</td>
                     </tr>
                     <tr>
                         <td>Bob</td>
                         <td>Male</td>
                         <td>bob@mail.com</td>
-                        <td>18899992222</td>
+                        <td>100</td>
                     </tr>
                     <tr>
                         <td>Cathy</td>
                         <td>Female</td>
                         <td>cathy@mail.com</td>
-                        <td>18899993333</td>
+                        <td>100</td>
                     </tr>
                     <tr>
                         <td>Dave</td>
                         <td>Male</td>
                         <td>dave@mail.com</td>
-                        <td>18899994444</td>
+                        <td>100</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </main>
+    <script src="userManage.js"></script>
+    <script>
+        ; (function () {
+            'use strict'
+            let elform = document.querySelector('#form1'),
+                data = {},
+                users = [];
+            boot();
+            function boot() {
+                bindSubmit();
+            }
+
+            function bindSubmit() {
+                elform.addEventListener('submit', e => {
+                e.preventDefault();
+                    let inputs = elform.querySelectorAll('input');
+                    inputs.forEach(input => {
+                        data[input.name] = input.value;
+                    })
+                    elform.reset();
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>
