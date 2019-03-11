@@ -1,0 +1,129 @@
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: sans-serif;
+        outline: none;
+    }
+
+    hr {
+        margin: 2em 0;
+    }
+
+    main {
+        width: 1000px;
+        margin-top: 5em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    main>* {
+        width: 50%;
+        float: left;
+    }
+
+    form>* {
+        display: block;
+        width: 100%;
+        padding: 1em .5em;
+        margin-bottom: .5em;
+        font-size: inherit;
+    }
+
+    input,
+    button {
+        border: 2px solid #000;
+        background: #fff;
+    }
+
+    button {
+        color: #fff;
+        background: #000;
+    }
+
+    label {
+        padding-right: 1em;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    input[type="radio"]+span {
+        content: "";
+        margin-left: -.5em;
+        margin-right: .5em;
+        display: inline-block;
+        border: #000 2px solid;
+        padding: .2em;
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+        position: relative;
+    }
+
+    input[type="radio"]:checked+span::before {
+        content: "";
+        margin-left: -.25em;
+        margin-top: -.25em;
+        width: .5em;
+        height: .5em;
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        background: #000;
+    }
+
+    table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+    }
+
+    .table {
+        padding-left: 3em;
+    }
+
+    th,
+    td {
+        border-bottom: 1px solid #888;
+        padding: 1em .2em;
+    }
+
+    th {
+        padding-top: 0;
+        border-bottom: 2px solid #222;
+    }
+
+    table button {
+        display: inline-block;
+        margin-bottom: .2em;
+    }
+</style>
+<main>
+<div class="form">
+    <h1>Add User</h1>
+    <form novalidate id="form1">
+        <input type="text" placeholder="Username" name="username">
+        <div>
+            <label>
+                <input type="radio" name="gender" value="male">
+                <span></span><span>Male</span>
+            </label>
+            <label>
+                <input type="radio" name="gender" value="female">
+                <span></span><span>Female</span>
+            </label>
+        </div>
+        <input data-rule="minLength:3|maxLength:10" type="text" placeholder="Email" name="email">
+        <input data-rule="min:3|max:10" type="text" placeholder="Email" name="email">
+        <input data-rule="between:3,10" type="text" placeholder="Email" name="email">
+        <input data-rule="leangthBetween:3,10" type="text" placeholder="Email" name="email">
+        <input data-rule="startsWith:aa" type="text" placeholder="Email" name="email">
+        <input data-rule="endsWith:ll" type="text" placeholder="Email" name="email">
+        <input data-rule="in:11,22,33" type="text" placeholder="Email" name="email">
+        <input type="number" placeholder="Balance" name="balance">
+        <button>Submit</button>
+    </form>
+</div>
+</main>
+<script src="validate.js"></script>

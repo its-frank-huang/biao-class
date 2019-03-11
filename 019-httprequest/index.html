@@ -1,0 +1,156 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    a{
+        color:#555;
+    }
+    body {
+        background: rgb(26, 47, 105);
+    }
+
+    img {
+        width: 100%;
+    }
+    main{
+        margin: 0 auto;
+        width: 1000px;
+
+    }
+    input {
+        width: 2em;
+        border-radius: 3em;
+        border: 2px solid #000;
+        height: 2em;
+        outline: none;
+        font-size: 2em;
+        padding: 1em;
+        transition: all 1s;
+        margin-top: 3em;
+        /* box-shadow: 0 0 5px 1px rgba(0, 0, 0, .4); */
+    }
+
+    .focus {
+        width: 60%; 
+    }
+
+    form {
+        margin-top: -2em;
+        width: 100%;
+        height: 20%;
+        text-align: center;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgb(26, 47, 105);
+    }
+
+    .item {
+        width: 100%;
+        background: #fff;
+        margin-bottom: 1rem;
+        position: relative;
+        transition:  all .2s;
+        font-size: 0;
+    }
+    .item >*{
+        font-size: 1rem;
+        display: inline-block;
+        vertical-align: top
+    }
+
+    .item:hover{
+        transform: scale(1.05);
+    }
+
+    .item:hover::before{
+        content: "";
+        height: 100%;
+        position: absolute;
+        width: .2rem;
+        background: rgb(250, 233, 0);
+    }
+
+    .imgwrap {
+        width: 10%;
+    }
+
+    .infor {
+        width: 80%;
+        padding-left: 1em;
+        padding-top: 1em;
+    }
+    .infor > *{
+        margin-bottom: .2em;
+    }
+    .infor .name {
+        font-size: 1.2em;
+        display: block;
+    }
+
+    .infor .name {
+        font-size: 1.2em;
+        margin-top: .3em;
+        display: block;
+    }
+    .link{
+        display: block;
+        text-align: right;
+    }
+</style>
+<main>
+    <form novalidate>
+        <input type="text" value="" id="search" autocomplete="off">
+    </form>
+    <div class="result">
+    </div>
+</main>
+<script>
+    ; (function () {
+        'use strict'
+        let form = document.querySelector('form');
+        let input = document.getElementById('search');
+
+        input.addEventListener('click',e=>{
+            input.style.width = '60%';
+        });
+        
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            let http = new XMLHttpRequest();
+            http.open('get', `https://api.github.com/search/users?q=${input.value}`);
+            http.send();
+            http.addEventListener('load', e => {
+                let data = JSON.parse(http.responseText);
+
+                data.items && render(data.items);
+            });
+        });
+
+        function render(items) {
+            let result = document.querySelector('.result');
+            result.innerHTML = '';
+            items.forEach(item => {
+                let html = document.createElement('div');
+                html.classList.add('item');
+                html.innerHTML =
+                    `<div class="imgwrap">
+                        <img src="${item.avatar_url}" alt="">
+                    </div>
+                    <div class="infor">
+                        <span class="name">
+                            ${item.login}
+                        </span>
+                        <span class="score">
+                            score: ${item.score}
+                        </span>
+                        <a href="${item.html_url}" class="link">
+                            ${item.html_url}
+                        </a>
+                    </div>`;
+                result.appendChild(html);
+            });
+        }
+    })();
+</script>
