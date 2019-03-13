@@ -2,9 +2,11 @@
     * {
         box-sizing: border-box;
     }
-    a{
-        color:inherit;
+
+    a {
+        color: inherit;
     }
+
     body {
         background: rgb(26, 47, 105);
     }
@@ -12,16 +14,18 @@
     img {
         width: 100%;
     }
-    main{
+
+    main {
         margin: 0 auto;
         width: 60%;
 
     }
+
     input {
         width: 2em;
         border-radius: 3em;
         border: 2px solid #fff;
-        background:transparent;
+        background: transparent;
         color: #fff;
         height: 2em;
         outline: none;
@@ -33,16 +37,17 @@
     }
 
     .focus {
-        width: 60%; 
+        width: 60%;
     }
-    .result{
+
+    .result {
         margin-top: 10em;
     }
 
     form {
         margin-top: -11em;
         width: 100%;
-        height: 14%;
+        height: 10%;
         text-align: center;
         position: fixed;
         z-index: 1;
@@ -57,22 +62,23 @@
         border: 1px solid #fff;
         /* background: #fff; */
         margin-bottom: 1rem;
-        transition:  all .2s;
+        transition: all .2s;
         font-size: 0;
         position: relative;
         color: #fff;
     }
-    .item >*{
+
+    .item>* {
         font-size: 1rem;
         display: inline-block;
         vertical-align: top;
     }
 
-    .item:hover{
+    .item:hover {
         transform: scale(1.05);
     }
 
-    .item::before{
+    .item::before {
         content: "";
         height: 100%;
         position: absolute;
@@ -80,7 +86,8 @@
         background: rgb(250, 233, 0);
         transition: all .3s;
     }
-    .item:hover::before{
+
+    .item:hover::before {
         width: .5rem;
     }
 
@@ -94,9 +101,11 @@
         padding-left: 1em;
         padding-top: 1em;
     }
-    .infor > *{
+
+    .infor>* {
         margin-bottom: .2em;
     }
+
     .infor .name {
         font-size: 1.2em;
         display: block;
@@ -107,9 +116,31 @@
         margin-top: .3em;
         display: block;
     }
-    .link{
+
+    .link {
         display: block;
         text-align: right;
+    }
+
+    .tomato-page {
+        margin-bottom: 3em;
+    }
+
+    .tomato-page button {
+        background: transparent;
+        border: 1px solid #fff;
+        display: inline-block;
+        color: #fff;
+        padding: .2em 1em;
+    }
+
+    .tomato-page button:hover {
+        background: rgba(255, 255, 255, .5);
+    }
+
+    .active {
+        color: rgb(26, 47, 105) !important;
+        background: #fff !important;
     }
 </style>
 <main>
@@ -118,28 +149,51 @@
     </form>
     <div class="result">
     </div>
+    <div class="tomato-page"></div>
 </main>
+<script src="tomatoPage.js"></script>
 <script>
     ; (function () {
         'use strict'
         let form = document.querySelector('form');
         let input = document.getElementById('search');
+        let limit = 10;
+        let data = {};
 
-        input.addEventListener('click',e=>{
-            input.style.width = '60%';
-        });
-        
-        form.addEventListener('submit', e => {
-            e.preventDefault();
+        boot();
+
+        function boot() {
+
+            input.addEventListener('click', e => {
+                input.style.width = '60%';
+            });
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                search(input.value);
+            });
+        }
+
+        function search(keyword, page = 1) {
+
             let http = new XMLHttpRequest();
-            http.open('get', `https://api.github.com/search/users?q=${input.value}`);
+            http.open('get', `https://api.github.com/search/users?q=${keyword}&page=${page}&per_page=${limit}`);
             http.send();
             http.addEventListener('load', e => {
-                let data = JSON.parse(http.responseText);
+                data = JSON.parse(http.responseText);
 
                 data.items && render(data.items);
+                tomatoPage.boot('.tomato-page', {
+                    total: data.total_count,
+                    limit: limit,
+                    onChange(Tpage) {
+                        if (page == Tpage)
+                            return;
+                        search(keyword, Tpage)
+                    }
+                });
             });
-        });
+        }
 
         function render(items) {
             let result = document.querySelector('.result');
