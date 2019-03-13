@@ -1,0 +1,31 @@
+<style>
+    .active{
+        background: #000;
+        color: #fff;-l                                                                                            
+    }
+</style>
+<div class="tomato-page">
+    <span>
+        <button>prev</button>
+    </span>
+    <span>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+    </span>
+    <span>
+        <button>next</button>
+    </span>
+</div>
+<script src="tomatoPage.js"></script>
+<script>
+    tomatoPage.boot('.tomato-page',{
+        total:100,
+        limit:10,
+        onChange(state){
+            console.log(state);
+        }
+    });
+</script>
