@@ -185,11 +185,13 @@
                 data.items && render(data.items);
                 tomatoPage.boot('.tomato-page', {
                     total: data.total_count,
+                    buttonLimit: 5,
                     limit: limit,
                     onChange(Tpage) {
                         if (page == Tpage)
                             return;
                         search(keyword, Tpage)
+                        tomatoPage.render(Tpage);
                     }
                 });
             });
