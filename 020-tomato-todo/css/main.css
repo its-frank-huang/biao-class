@@ -1,56 +1,114 @@
-.container{
+.container {
     margin-top: 5em;
 }
 
-form input{
-    width: 100%;
-    padding: 1em;
-    outline: 0;
-    border: 1px solid #444;    
+.container>* {
+    float: left;
 }
 
-form input:focus{
+.left {
+    width: 20%;
+    padding: 0 .5em;
+}
+
+.right {
+    width: 80%;
+}
+
+.title {
+    margin-top: 3em;
+}
+
+.add button,
+.cats>.item {
+    cursor: pointer;
+}
+
+.cats>.item {
+    margin-bottom: .5em;
+    background: #fff;
+    padding: .2em .5em;
+}
+
+.cats>.item:hover {
+    background: #ccc;
+}
+
+.active {
     border: 2px solid #444;
 }
 
-.todo-list{
+#form1 input,
+#form2 input,
+.add button {
+    width: 100%;
+    outline: 0;
+    border: 1px solid #444;
+}
+
+#form1 input:focus,
+#form2 input:focus {
+    border: 2px solid #444;
+}
+
+.add button {
+    margin-bottom: .2em;
+    background: #444;
+    color: #eee;
+}
+
+.add button:focus{
+    background: #aaa;
+    color:#444;
+    border: 1px solid transparent;
+}
+
+#form2 input {
+    padding: .2em;
+}
+
+#form1 input {
+    padding: 1em;
+}
+
+.todo-list {
     padding-top: 2em;
 }
 
-.todo-item{
+.todo-item {
     background: #fff;
     font-size: 0;
     margin-bottom: .5rem;
 }
 
-.todo-item > *{
+.todo-item>* {
     padding: 1rem;
     display: inline-block;
     font-size: 1rem;
 }
 
-.todo-item > .checkbox{
+.todo-item>.checkbox {
     width: 5%;
 }
 
-.todo-item > .content{
+.todo-item>.content {
     width: 65%;
 }
 
-.todo-item > .operations{
+.todo-item>.operations {
     width: 30%;
     text-align: right;
 }
 
-.checkbox-input input[type="checkbox"]{
+.checkbox-input input[type="checkbox"] {
     display: none;
 }
 
-.checkbox-input{
+.checkbox-input {
     position: relative;
 }
 
-.checkbox-input input[type="checkbox"]+span{
+.checkbox-input input[type="checkbox"]+span {
     content: "";
     display: inline-block;
     width: 1em;
@@ -60,7 +118,7 @@ form input:focus{
     vertical-align: middle;
 }
 
-.checkbox-input input[type="checkbox"]:checked+span::before{
+.checkbox-input input[type="checkbox"]:checked+span::before {
     content: "";
     display: inline-block;
     width: .7em;
@@ -72,14 +130,14 @@ form input:focus{
     vertical-align: middle;
 }
 
-.todo-item .operations button{
-    background:transparent ;
+.todo-item .operations button {
+    background: transparent;
     border: 1px #444 solid;
     padding: .3em;
     outline: none;
 }
 
-.todo-item .operations button:focus{
+.todo-item .operations button:focus {
     background: #444;
     color: #fff;
 }

@@ -1,7 +1,7 @@
 ; (function () {
     'use strict'
     let rootEl = document.querySelector('.todo-list'),
-        form = document.querySelector('form'),
+        form = document.querySelector('#form1'),
         input = form.querySelector('input');
 
     boot();

@@ -28,3 +28,15 @@ a,input,button,textarea{
     padding-left: 2em;
     padding-right: 2em;
 }
+
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-right{
+    text-align: right;
+}
