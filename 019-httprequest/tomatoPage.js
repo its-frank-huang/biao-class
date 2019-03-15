@@ -2,14 +2,15 @@
     'use strict'
     window.tomatoPage = {
         boot,
+        render,
     };
     function boot(el, config) {
         tomatoPage.rootEl = document.querySelector(el);
         tomatoPage.config = config;
         tomatoPage.pageAmount = Math.ceil(config.total / config.limit);
-        if(!tomatoPage.currentPage){
+        if (!tomatoPage.currentPage) {
             prepare();
-        }else{
+        } else {
             setPage(tomatoPage.currentPage);
         }
     };
@@ -33,18 +34,14 @@
         tomatoPage.first = root.querySelector('.Tfirst');
         tomatoPage.last = root.querySelector('.Tlast');
         tomatoPage.pageList = root.querySelector('.Tpage-list');
-        for (let index = 1; index <= tomatoPage.pageAmount; index++) {
-            let button = document.createElement('button');
-            button.innerHTML = index;
-            button.$index = index;
-            
-            tomatoPage.pageList.appendChild(button);
-        }
+        render(1);
+
         setPage(1);
         root.addEventListener('click', e => {
             let klass = e.target.classList;
             if (klass.contains('Tfirst')) {
-                setPage(1);
+                -
+                    setPage(1);
             } else
                 if (klass.contains('Tprev')) {
                     if (tomatoPage.currentPage == 1)
@@ -63,6 +60,38 @@
                         }
         });
 
+    }
+
+    function render(current) {
+        tomatoPage.pageList.innerHTML = "";
+        let start, end,
+            range = 5,
+            radius = Math.floor(range / 2);
+
+        start = current - radius;
+        end = current + radius;
+
+        if (current - radius <= 0) {
+            start = 1;
+            end = start + range - 1;
+        }
+
+        if (current + radius >= tomatoPage.pageAmount) {
+            end = tomatoPage.pageAmount;
+            start = end - range + 1;
+        }
+
+        if (tomatoPage.pageAmount <= range) {
+            start = 1;
+            end = tomatoPage.pageAmount;
+        }
+
+        for (let index = start; index <= end; index++) {
+            let button = document.createElement('button');
+            button.innerHTML = index;
+            button.$index = index;
+            tomatoPage.pageList.appendChild(button);
+        }
     }
 
     function setPage(index) {

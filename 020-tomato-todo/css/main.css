@@ -1,0 +1,85 @@
+.container{
+    margin-top: 5em;
+}
+
+form input{
+    width: 100%;
+    padding: 1em;
+    outline: 0;
+    border: 1px solid #444;    
+}
+
+form input:focus{
+    border: 2px solid #444;
+}
+
+.todo-list{
+    padding-top: 2em;
+}
+
+.todo-item{
+    background: #fff;
+    font-size: 0;
+    margin-bottom: .5rem;
+}
+
+.todo-item > *{
+    padding: 1rem;
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.todo-item > .checkbox{
+    width: 5%;
+}
+
+.todo-item > .content{
+    width: 65%;
+}
+
+.todo-item > .operations{
+    width: 30%;
+    text-align: right;
+}
+
+.checkbox-input input[type="checkbox"]{
+    display: none;
+}
+
+.checkbox-input{
+    position: relative;
+}
+
+.checkbox-input input[type="checkbox"]+span{
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: transparent;
+    border: 1px solid #444;
+    vertical-align: middle;
+}
+
+.checkbox-input input[type="checkbox"]:checked+span::before{
+    content: "";
+    display: inline-block;
+    width: .7em;
+    height: .7em;
+    left: .18em;
+    top: .44em;
+    position: absolute;
+    background: #444;
+    vertical-align: middle;
+}
+
+.todo-item .operations button{
+    background:transparent ;
+    border: 1px #444 solid;
+    padding: .3em;
+    outline: none;
+}
+
+.todo-item .operations button:focus{
+    background: #444;
+    color: #fff;
+}
