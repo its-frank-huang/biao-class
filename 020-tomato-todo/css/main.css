@@ -20,34 +20,99 @@
 }
 
 .add button,
-.cats>.item {
+.cat-list>.item {
     cursor: pointer;
 }
 
-.cats>.item {
-    margin-bottom: .5em;
-    background: #fff;
-    padding: .2em .5em;
+.cat-list .item {
+    position: relative;
 }
 
-.cats>.item:hover {
-    background: #ccc;
+.cat-list .item .operations {
+    position: absolute;
+    text-align: right;
+    font-size: .5em;
+    right: .2em;
+    top: .5em;
+}
+
+.cat-list .item .operations > span {
+    display: block;
+    color: #999;
+}
+
+.cat-list .item .operations span:hover {
+    color: #444;
+}
+
+.cat-list>.item::before {
+    content: "";
+    height: 100%;
+    background: #444;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.cat-list>.item:hover.item::before {
+    width: .2em;
+}
+
+.cat-list>.item {
+    margin-bottom: .5em;
+    font-size: 1.2em;
+    background: #fff;
+    padding: .5em .5em;
 }
 
 .active {
-    border: 2px solid #444;
+    border: 2px solid rgb(114, 105, 105);
 }
 
-#form1 input,
-#form2 input,
+#todo-form input,
+#cat-form input,
 .add button {
     width: 100%;
     outline: 0;
     border: 1px solid #444;
 }
 
-#form1 input:focus,
-#form2 input:focus {
+.ops {
+    padding-top: .2em;
+}
+
+.cat-list .item .operations {
+    display: none;
+}
+.cat-list .item:hover .operations {
+    display: inline-block;
+}
+
+.ops::before,
+.ops::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.ops button {
+    width: 49%;
+    background: #444;
+    color: #eee;
+    border: none;
+    cursor: pointer;
+}
+
+.ops [type="submit"] {
+    float: left;
+}
+
+.ops .cancel {
+    float: right;
+}
+
+#todo-form input:focus,
+#cat-form input:focus {
     border: 2px solid #444;
 }
 
@@ -57,22 +122,22 @@
     color: #eee;
 }
 
-.add button:focus{
+.add button:focus {
     background: #aaa;
-    color:#444;
+    color: #444;
     border: 1px solid transparent;
 }
 
-#form2 input {
+#cat-form input {
     padding: .2em;
 }
 
-#form1 input {
+#todo-form input {
     padding: 1em;
 }
 
 .todo-list {
-    padding-top: 2em;
+    padding-top: em;
 }
 
 .todo-item {
@@ -92,7 +157,7 @@
 }
 
 .todo-item>.content {
-    width: 65%;
+    width: 64%;
 }
 
 .todo-item>.operations {
@@ -122,9 +187,9 @@
     content: "";
     display: inline-block;
     width: .7em;
-    height: .7em;
-    left: .18em;
-    top: .44em;
+    height: .75em;
+    left: .17em;
+    top: .41em;
     position: absolute;
     background: #444;
     vertical-align: middle;
@@ -137,7 +202,7 @@
     outline: none;
 }
 
-.todo-item .operations button:focus {
+.todo-item .operations button:focus-within {
     background: #444;
     color: #fff;
 }

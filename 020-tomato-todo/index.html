@@ -3,21 +3,21 @@
 <h1 class="text-center title">Tomato Todo</h1>
 <div class="container">
     <div class="left">
-        <div class="cats">
-            <div class="item active">买菜</div>
-            <div class="item">学习</div>
-            <div class="item">生活</div>
+        <div class="cat-list">
         </div>
         <div class="add">
             <button>+</button>
         </div>
-        <form id="form2">
+        <form id="cat-form" hidden>
             <input type="text">
-            <button type="submit" hidden></button>
+            <div class="ops">
+                <button type="submit">Enter</button>
+                <button class="cancel" type="button">Cancel</button>
+            </div>
         </form>
     </div>
     <div class="right">
-        <form id="form1">
+        <form id="todo-form">
             <input type="text" name="content" autofocus>
         </form>
         <div class="todo-list">
