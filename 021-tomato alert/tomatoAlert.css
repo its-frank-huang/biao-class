@@ -1,0 +1,26 @@
+.tomatoAlert{
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+}
+
+.tomatoAlert .inner{
+    background: #555;
+    color: #fff;
+    border-radius: .2em;
+}
+
+.tomatoAlert .inner > *{
+    padding: .2em .5em;
+    cursor: pointer;
+}
+
+.tomatoAlert .title{
+    font-weight: bolder;
+    font-size: 1.1em;
+}
+
+.tomatoAlert .desc{
+    font-size: .9em;
+    font-weight: lighter;
+}
