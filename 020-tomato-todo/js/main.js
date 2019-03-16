@@ -8,7 +8,8 @@
         catForm = document.querySelector('#cat-form'),
         catInput = catForm.querySelector('input'),
         catCancel = catForm.querySelector('.cancel'),
-        addBtn = document.querySelector('.add button');
+        addBtn = document.querySelector('.add button'),
+        $currentCatId = null;
 
     boot();
 
@@ -74,14 +75,21 @@
     }
 
     function todoCreate(val) {
-        api('todo/create', { content: val }, r => {
-            todoRead();
-        });
+        if(val){
+            api('todo/create', { content: val, cat_id: $currentCatId }, r => {
+                todoRead();
+            });
+        }
     }
 
-    function todoRead() {
-        api('todo/read', null, r => {
-            todoRender(r.data);
+    function todoRead(params) {
+        params = params || {};
+
+        if ($currentCatId)
+            params.query = `where("cat_id" = "${$currentCatId}")`;
+
+        api('todo/read', params, r => {
+            todoRender(r.data || []);
         });
     }
 
@@ -145,7 +153,7 @@
 
     function catRead() {
         api('cat/read', null, r => {
-            catRender(r.data);
+            catRender(r.data || []);
         });
     }
 
@@ -154,18 +162,17 @@
         data.forEach(it => {
             let item = document.createElement('div');
             item.classList.add('item');
+            item.$id = it.id;
             item.innerHTML = `
                 <span></span>
-                <span>${it.name}</span>
+                <span class="name">${it.name}</span>
                 <span class="operations">
                     <span class="update">Update</span>
                     <span class="delete">Delete</span>
                 </span>
             `;
 
-            let operations = item.querySelector('.operations');
-
-            operations.addEventListener('click', e => {
+            item.addEventListener('click', e => {
                 let klass = e.target.classList;
 
                 if (klass.contains('update')) {
@@ -180,9 +187,25 @@
                         catRead();
                     });
                 }
+
+                $currentCatId = it.id;
+                todoRead();
+                catActive(item.$id);
             });
 
             catList.appendChild(item);
+        });
+
+    }
+
+    function catActive(id) {
+        let cats = catList.querySelectorAll('.item');
+
+        cats.forEach(cat => {
+            if (cat.$id == id)
+                cat.classList.add('active');
+            else
+                cat.classList.remove('active');
         });
 
     }
