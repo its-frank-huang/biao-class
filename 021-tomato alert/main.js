@@ -3,6 +3,12 @@
     
     tomatoAlert('yo',{
         desc:'XSD',
-        type:'info'
+        type:'info',
+        root:'.tomatoAlertContainer'
+    });
+    tomatoAlert('Ha',{
+        timeout:3000,
+        type:'info',
+        root:'.tomatoAlertContainer'
     });
 })();
