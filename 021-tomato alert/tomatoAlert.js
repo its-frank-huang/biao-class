@@ -22,8 +22,14 @@
     }
     
     function open(config){
+        config.onOpen && config.onOpen(config);
+        
+        if(!config.timeout)
+        return;
         
         setTimeout(e => {
+            
+            config.onClose && config.onClose(config);
             close(config);
         }, config.timeout);
     }

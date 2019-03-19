@@ -1,107 +1,103 @@
-; (function () {
-    'use strict'
-    let todoList = document.querySelector('.todo-list'),
-        todoForm = document.querySelector('#todo-form'),
-        todoInput = todoForm.querySelector('input');
+(function() {
+	'use strict';
+	let todoList = document.querySelector('.todo-list'),
+		todoForm = document.querySelector('#todo-form'),
+		todoInput = todoForm.querySelector('input');
 
-    let catList = document.querySelector('.cat-list'),
-        catForm = document.querySelector('#cat-form'),
-        catInput = catForm.querySelector('input'),
-        catCancel = catForm.querySelector('.cancel'),
-        addBtn = document.querySelector('.add button'),
-        $currentCatId = null;
+	let catList = document.querySelector('.cat-list'),
+		catForm = document.querySelector('#cat-form'),
+		catInput = catForm.querySelector('input'),
+		catCancel = catForm.querySelector('.cancel'),
+		addBtn = document.querySelector('.add button'),
+		$currentCatId = null;
 
-    boot();
+	boot();
 
-    function boot() {
+	function boot() {
+		todoRead();
+		catRead();
+		bindEvents();
+	}
 
-        todoRead();
-        catRead();
-        bindEvents();
-    }
+	function bindEvents() {
+		todoSubmit();
+		toggleCat();
+		catSubmit();
+	}
 
-    function bindEvents() {
-        todoSubmit();
-        toggleCat();
-        catSubmit();
-    }
+	function toggleCat() {
+		addBtn.addEventListener('click', (e) => {
+			setCatFormInvisible(true);
+		});
 
-    function toggleCat() {
-        addBtn.addEventListener('click', e => {
-            setCatFormInvisible(true);
-        });
+		catCancel.addEventListener('click', (e) => {
+			setCatFormInvisible(false);
+		});
+	}
 
-        catCancel.addEventListener('click', e => {
-            setCatFormInvisible(false);
-        });
-    }
+	function setCatFormInvisible(invisible = true) {
+		addBtn.hidden = invisible;
+		catForm.hidden = !invisible;
+	}
 
-    function setCatFormInvisible(invisible = true) {
-        addBtn.hidden = invisible;
-        catForm.hidden = !invisible;
-    }
+	function todoSubmit() {
+		todoForm.addEventListener('submit', (e) => {
+			e.preventDefault();
 
-    function todoSubmit() {
-        todoForm.addEventListener('submit', e => {
-            e.preventDefault();
+			if (todoInput._update) {
+				todoUpdate(todoInput);
+			} else {
+				todoCreate(todoInput.value);
+			}
+			todoForm.reset();
+		});
+	}
 
-            if (todoInput._update) {
-                todoUpdate(todoInput);
-            }
-            else {
-                todoCreate(todoInput.value);
-            }
-            todoForm.reset();
-        });
-    }
+	function catSubmit() {
+		catForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			if (catInput._update) {
+				catUpdate(catInput);
+			} else {
+				catCreate(catInput.value);
+			}
+			catForm.reset();
+		});
+	}
 
-    function catSubmit() {
-        catForm.addEventListener('submit', e => {
-            e.preventDefault();
-            if (catInput._update) {
-                catUpdate(catInput);
-            }
-            else {
-                catCreate(catInput.value);
-            }
-            catForm.reset();
-        });
-    }
+	function todoUpdate(input) {
+		api('todo/update', { id: input._update, content: input.value }, (r) => {
+			todoRead();
+		});
+	}
 
-    function todoUpdate(input) {
-        api('todo/update', { id: input._update, content: input.value }, r => {
-            todoRead();
-        });
-    }
+	function todoCreate(val) {
+		if (val) {
+			api('todo/create', { content: val, cat_id: $currentCatId }, (r) => {
+				todoRead();
+			});
+		}
+	}
 
-    function todoCreate(val) {
-        if(val){
-            api('todo/create', { content: val, cat_id: $currentCatId }, r => {
-                todoRead();
-            });
-        }
-    }
+	function todoRead(params) {
+		params = params || {};
 
-    function todoRead(params) {
-        params = params || {};
+		if ($currentCatId) params.query = `where("cat_id" = "${$currentCatId}")`;
 
-        if ($currentCatId)
-            params.query = `where("cat_id" = "${$currentCatId}")`;
+		api('todo/read', params, (r) => {
+			todoRender(r.data || []);
+		});
+	}
 
-        api('todo/read', params, r => {
-            todoRender(r.data || []);
-        });
-    }
-
-    function todoRender(data) {
-        todoList.innerHTML = "";
-        data.forEach(it => {
-            let item = document.createElement('div');
-            item.classList.add('todo-item');
-            item.innerHTML = `
+	function todoRender(data) {
+		todoList.innerHTML = '';
+		data.forEach((it) => {
+			let item = document.createElement('div');
+			item.classList.add('todo-item');
+			item.innerHTML = `
                 <div class="checkbox">
                     <label class="checkbox-input">
-                        <input type="checkbox" ${it.completed ? 'checked' : ""}>
+                        <input type="checkbox" ${it.completed ? 'checked' : ''}>
                         <span></span>
                     </label>
                 </div>
@@ -112,58 +108,58 @@
                 </div>
             `;
 
-            let checkbox = item.querySelector('.checkbox [type="checkbox"]');
-            let operations = item.querySelector('.operations');
+			let checkbox = item.querySelector('.checkbox [type="checkbox"]');
+			let operations = item.querySelector('.operations');
 
-            checkbox.addEventListener('change', e => {
-                setComplete(it.id, checkbox.checked);
-            });
+			checkbox.addEventListener('change', (e) => {
+				setComplete(it.id, checkbox.checked);
+			});
 
-            operations.addEventListener('click', e => {
-                let target = e.target;
+			operations.addEventListener('click', (e) => {
+				let target = e.target;
 
-                if (target.classList.contains('update')) {
-                    todoInput.value = it.content;
-                    todoInput._update = it.id;
-                    todoInput.focus();
-                }
+				if (target.classList.contains('update')) {
+					todoInput.value = it.content;
+					todoInput._update = it.id;
+					todoInput.focus();
+				}
 
-                if (target.classList.contains('remove')) {
-                    api('todo/delete', { id: it.id }, r => {
-                        todoRead();
-                    });
-                }
-            });
+				if (target.classList.contains('remove')) {
+					api('todo/delete', { id: it.id }, (r) => {
+						todoRead();
+					});
+				}
+			});
 
-            todoList.appendChild(item);
-        });
-    }
+			todoList.appendChild(item);
+		});
+	}
 
-    function catUpdate(input) {
-        api('cat/update', { id: input._update, name: input.value }, r => {
-            catRead();
-        });
-    }
+	function catUpdate(input) {
+		api('cat/update', { id: input._update, name: input.value }, (r) => {
+			catRead();
+		});
+	}
 
-    function catCreate(val) {
-        api('cat/create', { name: val }, r => {
-            catRead();
-        });
-    }
+	function catCreate(val) {
+		api('cat/create', { name: val }, (r) => {
+			catRead();
+		});
+	}
 
-    function catRead() {
-        api('cat/read', null, r => {
-            catRender(r.data || []);
-        });
-    }
+	function catRead() {
+		api('cat/read', null, (r) => {
+			catRender(r.data || []);
+		});
+	}
 
-    function catRender(data) {
-        catList.innerHTML = "";
-        data.forEach(it => {
-            let item = document.createElement('div');
-            item.classList.add('item');
-            item.$id = it.id;
-            item.innerHTML = `
+	function catRender(data) {
+		catList.innerHTML = '';
+		data.forEach((it) => {
+			let item = document.createElement('div');
+			item.classList.add('item');
+			item.$id = it.id;
+			item.innerHTML = `
                 <span></span>
                 <span class="name">${it.name}</span>
                 <span class="operations">
@@ -172,48 +168,43 @@
                 </span>
             `;
 
-            item.addEventListener('click', e => {
-                let klass = e.target.classList;
+			item.addEventListener('click', (e) => {
+				let klass = e.target.classList;
 
-                if (klass.contains('update')) {
-                    setCatFormInvisible(true);
-                    catInput.value = it.name;
-                    catInput._update = it.id;
-                    catInput.focus();
-                }
+				if (klass.contains('update')) {
+					setCatFormInvisible(true);
+					catInput.value = it.name;
+					catInput._update = it.id;
+					catInput.focus();
+				}
 
-                if (klass.contains('delete')) {
-                    api('cat/delete', { id: it.id }, r => {
-                        catRead();
-                    });
-                }
+				if (klass.contains('delete')) {
+					api('cat/delete', { id: it.id }, (r) => {
+						catRead();
+					});
+				}
 
-                $currentCatId = it.id;
-                todoRead();
-                catActive(item.$id);
-            });
+				$currentCatId = it.id;
+				todoRead();
+				catActive(item.$id);
+			});
 
-            catList.appendChild(item);
-        });
+			catList.appendChild(item);
+		});
+	}
 
-    }
+	function catActive(id) {
+		let cats = catList.querySelectorAll('.item');
 
-    function catActive(id) {
-        let cats = catList.querySelectorAll('.item');
+		cats.forEach((cat) => {
+			if (cat.$id == id) cat.classList.add('active');
+			else cat.classList.remove('active');
+		});
+	}
 
-        cats.forEach(cat => {
-            if (cat.$id == id)
-                cat.classList.add('active');
-            else
-                cat.classList.remove('active');
-        });
-
-    }
-
-    function setComplete(id, checked) {
-        api('todo/update', { id, completed: checked }, r => {
-            todoRead();
-        });
-    }
-
+	function setComplete(id, checked) {
+		api('todo/update', { id, completed: checked }, (r) => {
+			todoRead();
+		});
+	}
 })();
