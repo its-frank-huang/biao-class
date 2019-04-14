@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Todo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+    </style>
+    <link rel="stylesheet" href="lib/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="main">
+        <div class="navbar">
+            <h1>Todo</h1>
+        </div>
+        <div class="header">
+            "A Vue Todo Practice."
+        </div>
+        <form @submit.prevent="merge" id="task-form" autocomplete="off">
+            <div class="center">
+                <h3>add</h3>
+                <input v-model="current.title" type="text" id="task-input">
+                <button hidden type="submit"></button>
+            </div>
+        </form>
+        <div class="task-list">
+            <div class="center">
+                <h3>unfinished</h3>
+                <div v-if="!todo.complete" v-for="todo in list" class="item">
+                    <button @click="toggle_complete(todo.id)">Complete</button>
+                    {{todo.title}}
+                    <button @click="set_current(todo)">Update</button>
+                    <button @click="remove(todo.id)">Remove</button>
+                </div>
+            </div>
+        </div>
+        <div class="task-list">
+            <div class="center">
+                <h3>finished</h3>
+                <div v-if="todo.complete" v-for="todo in list" class="item">
+                        <button @click="toggle_complete(todo.id)">Incomplete</button>
+                        {{todo.title}}
+                        <button @click="set_current(todo)">Update</button>
+                        <button @click="remove(todo.id)">Remove</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script src="lib/vue.js"></script>
+    <script src="js/myStorage.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
