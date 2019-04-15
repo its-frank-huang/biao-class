@@ -23,6 +23,10 @@
             <div class="center">
                 <h3>add</h3>
                 <input v-model="current.title" type="text" id="task-input">
+                <div class="detail">
+                    <textarea v-model="current.desc"></textarea>
+                    <input type="datetime-local" v-model="current.alert_at">
+                </div>
                 <button hidden type="submit"></button>
             </div>
         </form>

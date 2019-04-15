@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-#task-input{
+input,textarea{
     width: 100%;
     border: 1px solid #555;
     border-radius: 3px;
@@ -42,4 +42,12 @@ h3{
     padding-top: 1.5em;
     color: #555;
     padding-bottom: 1.5em;
+}
+
+.detail{
+    font-size: 0;
+}
+
+.detail > *{
+    font-size: 1rem;
 }

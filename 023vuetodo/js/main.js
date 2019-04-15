@@ -12,7 +12,7 @@
 		props    : [ 'todo' ],
 		methods  : {
 			action(name, params) {
-				Event.$emit(name,params);
+				Event.$emit(name, params);
 			}
 		}
 	});
@@ -26,17 +26,39 @@
 		mounted() {
 			this.list = ms.get('list') || [];
 			let me = this;
-			Event.$on('remove',params=>{
+
+			setInterval(e=>{
+				me.check_alert();
+			},1000);
+
+			Event.$on('remove', (params) => {
 				me.remove(params);
 			});
-			Event.$on('set_current',params=>{
+
+			Event.$on('set_current', (params) => {
 				me.set_current(params);
 			});
-			Event.$on('toggle_complete',params=>{
+
+			Event.$on('toggle_complete', (params) => {
 				me.toggle_complete(params);
 			});
 		},
 		methods : {
+			check_alert(){
+				let me = this;
+				this.list.forEach((it,index)=>{
+					if(!it.alert_at || it.confirmed) return;
+
+					let alert_time = (new Date(it.alert_at)).getTime;
+					let now = (new Date()).getTime;
+
+					if(now >= alert_time){
+
+						this.list[index].confirmed = confirm(this.list[index].title);
+					}
+				});
+			},
+
 			merge() {
 				if (this.current.id) {
 					let index = this.find_index(this.current.id);
