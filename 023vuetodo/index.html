@@ -57,6 +57,8 @@
             {{todo.title}}
             <button @click="action('set_current',todo)">Update</button>
             <button @click="action('remove',todo.id)">Remove</button>
+            <button v-if="todo.desc" @click="action('toggle_detail',todo.id)">Detail</button>
+            <div class="deatil" v-if="todo.detail">{{todo.desc}}</div>
         </div>
     </template>
     <script src="lib/vue.js"></script>

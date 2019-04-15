@@ -12,7 +12,7 @@
 		props    : [ 'todo' ],
 		methods  : {
 			action(name, params) {
-				Event.$emit(name, params);
+				Event.$emit('task',{name, params});
 			}
 		}
 	});
@@ -31,19 +31,17 @@
 				me.check_alert();
 			},1000);
 
-			Event.$on('remove', (params) => {
-				me.remove(params);
+			Event.$on('task', (data) => {
+				me[data.name](data.params);
 			});
 
-			Event.$on('set_current', (params) => {
-				me.set_current(params);
-			});
-
-			Event.$on('toggle_complete', (params) => {
-				me.toggle_complete(params);
-			});
 		},
 		methods : {
+			toggle_detail(id){
+				let index = this.find_index(id);
+				Vue.set(this.list[index] , 'detail' , !this.list[index].detail);
+			},
+
 			check_alert(){
 				let me = this;
 				this.list.forEach((it,index)=>{
@@ -54,8 +52,10 @@
 
 					if(now >= alert_time){
 
-						this.list[index].confirmed = confirm(this.list[index].title);
+						let confirmed = confirm(this.list[index].title);
+						Vue.set(this.list[index], 'confirmed', confirmed);
 					}
+					
 				});
 			},
 
