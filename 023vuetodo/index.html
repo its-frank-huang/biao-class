@@ -29,26 +29,32 @@
         <div class="task-list">
             <div class="center">
                 <h3>unfinished</h3>
-                <div v-if="!todo.complete" v-for="todo in list" class="item">
-                    <button @click="toggle_complete(todo.id)">Complete</button>
-                    {{todo.title}}
-                    <button @click="set_current(todo)">Update</button>
-                    <button @click="remove(todo.id)">Remove</button>
-                </div>
+                <task 
+                    :todo="todo"
+                    v-if="!todo.complete" 
+                    v-for="todo in list" 
+                ></task>
             </div>
         </div>
         <div class="task-list">
             <div class="center">
                 <h3>finished</h3>
-                <div v-if="todo.complete" v-for="todo in list" class="item">
-                        <button @click="toggle_complete(todo.id)">Incomplete</button>
-                        {{todo.title}}
-                        <button @click="set_current(todo)">Update</button>
-                        <button @click="remove(todo.id)">Remove</button>
-                    </div>
+                <task 
+                    :todo="todo"
+                    v-if="todo.complete" 
+                    v-for="todo in list" 
+                ></task>
             </div>
         </div>
     </div>
+    <template id="task-tpl">
+        <div class="item">
+            <button @click="action('toggle_complete',todo.id)">{{todo.complete ? 'Incomplete' : 'Complete'}}</button>
+            {{todo.title}}
+            <button @click="action('set_current',todo)">Update</button>
+            <button @click="action('remove',todo.id)">Remove</button>
+        </div>
+    </template>
     <script src="lib/vue.js"></script>
     <script src="js/myStorage.js"></script>
     <script src="js/main.js"></script>
