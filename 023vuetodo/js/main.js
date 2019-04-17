@@ -12,7 +12,7 @@
 		props    : [ 'todo' ],
 		methods  : {
 			action(name, params) {
-				Event.$emit('task',{name, params});
+				Event.$emit('task', { name, params });
 			}
 		}
 	});
@@ -21,41 +21,45 @@
 		el      : '#main',
 		data    : {
 			list    : [],
-			current : {}
+			last_id : 0,
+			current : {
+				show : false
+			}
 		},
 		mounted() {
-			this.list = ms.get('list') || [];
+			this.list = ms.get('list') || this.list;
+			this.last_id = ms.get('last_id') || this.last_id;
 			let me = this;
 
-			setInterval(e=>{
+			setInterval((e) => {
 				me.check_alert();
-			},1000);
+			}, 1000);
 
 			Event.$on('task', (data) => {
 				me[data.name](data.params);
 			});
-
 		},
 		methods : {
-			toggle_detail(id){
+			show_detail() {
+				this.current.show = !this.current.show;
+			},
+			toggle_detail(id) {
 				let index = this.find_index(id);
-				Vue.set(this.list[index] , 'detail' , !this.list[index].detail);
+				Vue.set(this.list[index], 'detail', !this.list[index].detail);
 			},
 
-			check_alert(){
+			check_alert() {
 				let me = this;
-				this.list.forEach((it,index)=>{
-					if(!it.alert_at || it.confirmed) return;
+				this.list.forEach((it, index) => {
+					if (!it.alert_at || it.confirmed) return;
 
-					let alert_time = (new Date(it.alert_at)).getTime;
-					let now = (new Date()).getTime;
+					let alert_time = new Date(it.alert_at).getTime;
+					let now = new Date().getTime;
 
-					if(now >= alert_time){
-
+					if (now >= alert_time) {
 						let confirmed = confirm(this.list[index].title);
 						Vue.set(this.list[index], 'confirmed', confirmed);
 					}
-					
 				});
 			},
 
@@ -70,7 +74,9 @@
 					}
 
 					let todo = { ...this.current };
-					todo.id = this.next_id();
+					this.last_id++;
+					todo.id = this.last_id;
+					ms.set('last_id', this.last_id);
 					todo.complete = false;
 					this.list.push(todo);
 				}
@@ -86,9 +92,6 @@
 				this.current = copy(todo);
 				let input = document.getElementById('task-input');
 				input.focus();
-			},
-			next_id() {
-				return this.list.length + 1;
 			},
 			find_index(id) {
 				return this.list.findIndex((item) => {

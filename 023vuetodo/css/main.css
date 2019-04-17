@@ -5,17 +5,72 @@
     box-sizing: border-box;
 }
 
+img{
+    width: 100%;
+    height: 100%;
+}
+
+i,input,textarea{
+    transition: all ease-in-out .2s;
+}
+
 input,textarea{
     width: 100%;
     border: 1px solid #555;
     border-radius: 3px;
     padding: .5em 1em;
+    outline: none ;
+    border-collapse: collapse;
+}
+
+input:focus,textarea:focus{
+    border: #F44336 1px solid;
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, .4);
 }
 
 h3{
     text-transform: capitalize;
     color: #555;
     padding: .2em 0;
+}
+
+.form-wrap{
+    background: #ddd;
+    border-radius: .5em;
+    padding: .4em
+}
+
+.form-wrap textarea,.form-wrap input[type="datetime-local"]{
+    border: none;
+    border-radius: 0px;
+}
+
+.form-wrap input[type="datetime-local"]{
+    border-bottom-right-radius: .2em;
+    border-bottom-left-radius: .2em;
+}
+
+form .add-wrap{
+    position: relative;
+}
+
+i{
+    position: absolute;
+    top:50%;
+    right:.5em;
+    transform: translateY(-50%);
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    opacity: .5;
+    background-image: url('../icons/more.svg');
+    background-size: 2em;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+i:hover{
+    opacity: 1;
 }
 
 .center{
@@ -25,16 +80,17 @@ h3{
 }
 
 .navbar{
-    text-align: center;
     background: #F44336;
+    text-align: center;
 }
 
 .navbar h1{
-    margin: 0;
+    margin: 0 auto;
     color: #fff;
     font-size: 2em;
     padding-top: .5em;
     padding-bottom: .5em;
+    display: block;
 }
 
 .header{
@@ -42,6 +98,17 @@ h3{
     padding-top: 1.5em;
     color: #555;
     padding-bottom: 1.5em;
+}
+
+.complete-btn{
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+}
+
+.todo-title{
+    line-height: 2.5em
 }
 
 .detail{

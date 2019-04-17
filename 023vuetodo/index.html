@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue Todo</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto');
-    </style>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
     <link rel="stylesheet" href="lib/normalize.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -22,42 +20,58 @@
         <form @submit.prevent="merge" id="task-form" autocomplete="off">
             <div class="center">
                 <h3>add</h3>
-                <input v-model="current.title" type="text" id="task-input">
-                <div class="detail">
-                    <textarea v-model="current.desc"></textarea>
-                    <input type="datetime-local" v-model="current.alert_at">
+                <div class="form-wrap">
+
+                    <div class="add-wrap">
+                        <input v-model="current.title" type="text" id="task-input">
+                        <i @click="show_detail()" class="show"></i>
+                    </div>
+                    <div class="detail" v-if="current.show">
+                        <textarea v-model="current.desc"></textarea>
+                        <input type="datetime-local" v-model="current.alert_at">
+                    </div>
+                    <button hidden type="submit"></button>
                 </div>
-                <button hidden type="submit"></button>
             </div>
         </form>
         <div class="task-list">
-            <div class="center">
-                <h3>unfinished</h3>
-                <task 
-                    :todo="todo"
-                    v-if="!todo.complete" 
-                    v-for="todo in list" 
-                ></task>
+            <div class="card center mt-4 mb-4">
+                <h3 class="card-header">unfinished</h3>
+                <div class="list-group-flush">
+                    <task 
+                        :todo="todo"
+                        v-if="!todo.complete" 
+                        v-for="todo in list" 
+                    ></task>
+                </div>
             </div>
         </div>
         <div class="task-list">
-            <div class="center">
-                <h3>finished</h3>
-                <task 
-                    :todo="todo"
-                    v-if="todo.complete" 
-                    v-for="todo in list" 
-                ></task>
+            <div class="center card mt-4 mb-4">
+                <h3 class="card-header">finished</h3>
+                <div class="list-group-flush">
+                    <task 
+                        :todo="todo"
+                        v-if="todo.complete" 
+                        v-for="todo in list" 
+                    ></task>
+                </div>
             </div>
         </div>
     </div>
     <template id="task-tpl">
-        <div class="item">
-            <button @click="action('toggle_complete',todo.id)">{{todo.complete ? 'Incomplete' : 'Complete'}}</button>
-            {{todo.title}}
-            <button @click="action('set_current',todo)">Update</button>
-            <button @click="action('remove',todo.id)">Remove</button>
-            <button v-if="todo.desc" @click="action('toggle_detail',todo.id)">Detail</button>
+        <div class="item list-group-item list-group-item-action clearfix">
+            <a class="complete-btn" 
+            @click="action('toggle_complete',todo.id)">
+            <img src="./icons/complete.png">
+            <!-- {{todo.complete ? 'Incomplete' : 'Complete'}} -->
+        </a>
+            <span class="todo-title ml-2 align-middle">{{todo.title}}</span>
+            <div class="btn-group float-right">
+                <button class="btn btn-light" @click="action('set_current',todo)">Update</button>
+                <button class="btn btn-light" @click="action('remove',todo.id)">Remove</button>
+                <button class="btn btn-light" v-if="todo.desc" @click="action('toggle_detail',todo.id)">Detail</button>
+            </div>
             <div class="deatil" v-if="todo.detail">{{todo.desc}}</div>
         </div>
     </template>
