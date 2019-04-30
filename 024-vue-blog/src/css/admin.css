@@ -1,0 +1,11 @@
+#app{
+    background: #eee;
+}
+
+.input-control{
+    margin-bottom: 1em;
+}
+
+.input-control:last-child{
+    margin:0
+}
