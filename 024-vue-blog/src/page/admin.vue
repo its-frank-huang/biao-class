@@ -3,21 +3,26 @@
         <div class="card">
         <form @submit.prevent="onSubmit" class="card-body">
             <h3 class="card-title">增加/更新文章</h3>
-            <div class="input-control">
-                <label>标题</label>
-                <input type="text" v-model="current.title">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                <span class="input-group-text">标题</span>
+                </div>
+                <input type="text" class="form-control" v-model="current.title">
             </div>
-            <div class="input-control">
-                <label>内容</label>
-                <input type="textarea" v-model="current.content">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+
+                <span class="input-group-text">内容</span>
+                </div>
+                <textarea class=" form-control" type="textarea" v-model="current.content"></textarea>
             </div>
-            <div class="input-control">
+            <div class="input-group">
                 <button class="btn btn-primary btn-block" type="submit">提交</button>
             </div>
         </form>
         </div>
         
-        <table class="table mt-3 table-light">
+        <table class="table mt-3 table-light rounded">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -27,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="it in list" class="">
+                <tr v-for="it in list" :key="it">
                     <td scope="row">{{it.id}}</td>
                     <td>{{it.title}}</td>
                     <td>{{it.content}}</td>

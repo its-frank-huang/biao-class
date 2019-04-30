@@ -9,3 +9,7 @@
 .input-control:last-child{
     margin:0
 }
+
+td{
+    line-height: 2.2em;
+}
