@@ -1,8 +1,9 @@
 <template>
 <div class="main container" style="maxwidth:40em">
-    <div class="card">
+    <div class="card mt-3">
         <div class="card-body">
             <h3 class="card-title">{{row.title}}</h3>
+            <span class="card-text text-muted">{{row.$cat.name}}</span>
             <div class="content">{{row.content}}</div>
         </div>
     </div>
@@ -69,7 +70,17 @@ export default {
             this.createComment();
         },
         findPost(id){
-            api('post/find',{id}).then(r=>{
+            let param ={
+                id,
+                with:[
+                    {
+                        model:'cat',
+                        relation:'belongs_to',
+                    }
+                ]
+            };
+            
+            api('post/find',param).then(r=>{
                 this.row = r.data;
             });
         },

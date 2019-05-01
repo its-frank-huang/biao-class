@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-  <span class="navbar-brand" href="#">Vue Blog</span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+  <span class="navbar-brand text-white" href="#">Vue Blog</span>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <router-link class="nav-item nav-link" to="/">Home</router-link>
-        <router-link class="nav-item nav-link" to="/admin/post">Admin</router-link>
+      <router-link class="nav-item nav-link text-white" to="/">Home</router-link>
+        <router-link class="nav-item nav-link text-white" to="/admin/post">Admin</router-link>
     </div>
   </div>
 </nav>

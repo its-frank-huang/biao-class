@@ -4,6 +4,7 @@ import Home from './page/home.vue';
 import post from './page/post.vue';
 import Admin from './page/admin.vue';
 import adminPost from './page/adminPost.vue';
+import adminCat from './page/adminCat.vue';
 
 import VueRouter from 'vue-router';
 
@@ -25,7 +26,11 @@ const routes = [
       {
         path:'post/',
         component:adminPost
-      }
+      },
+      {
+        path:'cat/',
+        component:adminCat
+      },
     ]
   }
 ];

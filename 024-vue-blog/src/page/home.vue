@@ -1,6 +1,6 @@
 <template>
 <div class="main container" style="maxwidth:40em">
-    <div class="card">
+    <div class="card mt-3">
         <div class="card-body">
             <h3 class="card-title">Post List</h3>
             <div v-for="it in postlist" :key="it" class="list-group list-group-flush post-list">
