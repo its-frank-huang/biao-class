@@ -5,7 +5,9 @@
             <h3 class="card-title">Post List</h3>
             <div v-for="it in postlist" :key="it" class="list-group list-group-flush post-list">
                 <div class="list-group-item">
+                    <router-link :to="`/post/${it.id}`">
                     <span>{{it.title}}</span>
+                    </router-link>
                     <div>{{it.content}}</div>
                 </div>
             </div>
