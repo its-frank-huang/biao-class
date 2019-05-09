@@ -9,7 +9,7 @@ body{
 }
 
 .timeline{
-    margin-right: 1rem;
+    margin-right: .5rem;
 }
 
 .timeline-item{
@@ -38,7 +38,7 @@ body{
 }
 
 .card{
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 }
 
 .cat-list{
@@ -49,6 +49,7 @@ body{
 .card .content{
     padding: .5rem;
 }
+
 
 .cat-item{
     display: block;

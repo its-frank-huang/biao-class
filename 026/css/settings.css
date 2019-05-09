@@ -1,0 +1,14 @@
+.card{
+    background: #fff;
+    padding: .5rem;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .1);
+}
+
+.vertical-nav{
+    margin-right: .5rem;
+    padding: 0;
+}
+
+.vertical-nav a{
+    padding: .2rem .4rem;
+}
