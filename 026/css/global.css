@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+h2,
+h3{
+    margin: 0;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -178,4 +183,18 @@ button {
 
 .vertical-nav a:hover{
     background: #eee;
+}
+
+.card{
+    background: #fff;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, .1);
+    margin-bottom: .5rem;
+    padding:.5rem;
+}
+
+.pill{
+    background: #888;
+    color: #fff;
+    padding: 0rem .8rem;
+    border-radius: 2rem;
 }
