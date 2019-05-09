@@ -28,24 +28,24 @@
             </div>
         </div>
         <div class="main card">
-            <form>
+            <form id="signupForm">
                 <label>
                     <div class="field">
                         用户名
                     </div>
-                    <input type="text" />
+                    <input type="text" id="username" autocomplete="off" />
                 </label>
                 <label>
                     <div class="field">
                         密码
                     </div>
-                    <input type="text" />
+                    <input type="text" id="password" autocomplete="off" />
                 </label>
                 <label>
                     <div class="field">
                         重复密码
                     </div>
-                    <input type="text" />
+                    <input type="text" autocomplete="off" />
                 </label>
                 <label>
                     <button type="submit">提交</button>
@@ -55,3 +55,34 @@
         <div class="footer"></div>
     </body>
 </html>
+<script src="js/api.js"></script>
+<script>
+    boot();
+
+    function boot() {
+        bindEvents();
+    }
+
+    function bindEvents() {
+        signupForm.addEventListener("submit", e => {
+            e.preventDefault();
+
+            let row = {
+                username: username.value,
+                password: password.value
+            };
+
+            if (!row) return;
+
+            // username.value = "";
+            // password.value = "";
+            // signUp(row);
+        });
+    }
+
+    function signUp(user) {
+        api("user/create", user).then(r => {
+            if (r.success) alert("sign up successful !");
+        });
+    }
+</script>

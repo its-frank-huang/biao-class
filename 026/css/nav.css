@@ -5,8 +5,14 @@
 }
 
 .nav .search{
-    padding-top: .2rem;
+    padding-top: .45rem;
     padding-left: .2rem;
+}
+
+.nav .search input{
+    border-radius: 5rem;
+    padding: .4rem 1rem;
+    margin-left: .5rem;
 }
 
 .nav .left > *,
