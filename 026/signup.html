@@ -39,13 +39,13 @@
                     <div class="field">
                         密码
                     </div>
-                    <input type="text" id="password" autocomplete="off" />
+                    <input type="password" id="password" autocomplete="off" />
                 </label>
                 <label>
                     <div class="field">
                         重复密码
                     </div>
-                    <input type="text" autocomplete="off" />
+                    <input type="password" autocomplete="off" id="rePassword" />
                 </label>
                 <label>
                     <button type="submit">提交</button>
@@ -73,16 +73,27 @@
             };
 
             if (!row) return;
-
-            // username.value = "";
-            // password.value = "";
-            // signUp(row);
+            api(
+                "user/exists",
+                { where: { and: { username: username.value } } },
+                r => {
+                    if (r.data) {
+                        alert("用户名已存在");
+                    } else {
+                        signUp(row);
+                    }
+                }
+            );
         });
     }
 
     function signUp(user) {
-        api("user/create", user).then(r => {
+        api("user/create", user, r => {
             if (r.success) alert("sign up successful !");
+            username.value = "";
+            password.value = "";
+            rePassword.value = "";
+            // location.href='./home.html';
         });
     }
 </script>

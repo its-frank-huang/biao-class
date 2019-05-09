@@ -28,18 +28,18 @@
             </div>
         </div>
         <div class="main card">
-            <form>
+            <form id="loginForm">
                 <label>
                     <div class="field">
                         用户名
                     </div>
-                    <input type="text" />
+                    <input type="text" id="username" />
                 </label>
                 <label>
                     <div class="field">
                         密码
                     </div>
-                    <input type="text" />
+                    <input type="password" id="password" />
                 </label>
                 <label>
                     <button type="submit">提交</button>
@@ -49,3 +49,38 @@
         <div class="footer"></div>
     </body>
 </html>
+<script src="js/api.js"></script>
+<script>
+    boot();
+
+    function boot() {
+        loginForm.addEventListener("submit", e => {
+            e.preventDefault();
+
+            let row = {
+                username: username.value,
+                password: password.value
+            };
+
+            if (!row) return;
+
+            login(row);
+        });
+    }
+
+    function login(user) {
+        let params = {
+            where: {
+                and: user
+            }
+        };
+        api("user/exists", params, r => {
+            if (!r.data) {
+                alert("用户名或密码有误");
+                return;
+            }
+
+            alert("登录成功");
+        });
+    }
+</script>
