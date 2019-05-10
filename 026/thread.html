@@ -21,9 +21,14 @@
                     </div>
                 </div>
                 <div class="col-8 right text-right">
-                    <a href="#" class="nav-item">登录</a>
-                    <a href="#" class="nav-item">注册</a>
-                    <a href="#" class="nav-item">王花花</a>
+                    <span id="tourist">
+                        <a href="./login.html" class="nav-item">登录</a>
+                        <a href="./signup.html" class="nav-item">注册</a>
+                    </span>
+                    <span id="loggedIn" hidden>
+                        <a href="#" class="nav-item" id="navItemName"></a>
+                        <a href="#" id="logOut" onclick="logOut()">登出</a>
+                    </span>
                 </div>
             </div>
         </div>
@@ -37,7 +42,11 @@
                         <span>6357次点击</span>
                     </div>
                     <div class="content">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem accusamus non tenetur, inventore iste doloremque provident animi officiis aliquid porro repellat ipsum beatae temporibus at. Ducimus veritatis quia enim nisi.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Autem accusamus non tenetur, inventore iste
+                        doloremque provident animi officiis aliquid porro
+                        repellat ipsum beatae temporibus at. Ducimus veritatis
+                        quia enim nisi.
                     </div>
                 </div>
                 <div class="comment-list card">
@@ -46,7 +55,7 @@
                     </h3>
                     <div class="comment-item row">
                         <div class="thumbnail col-2">
-                            <img src="http://dummyimage.com/300x300" alt="">
+                            <img src="http://dummyimage.com/300x300" alt="" />
                         </div>
                         <div class="col-22">
                             <div class="info row">
@@ -57,13 +66,17 @@
                                 <div class="pill right">2</div>
                             </div>
                             <div class="content">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem repellat quia iste excepturi ut beatae, architecto cum quo, animi ab voluptatem dolores earum necessitatibus id sunt libero? Voluptas, harum veniam!
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Rem repellat quia iste
+                                excepturi ut beatae, architecto cum quo, animi
+                                ab voluptatem dolores earum necessitatibus id
+                                sunt libero? Voluptas, harum veniam!
                             </div>
                         </div>
                     </div>
                     <div class="comment-item row">
                         <div class="thumbnail col-2">
-                            <img src="http://dummyimage.com/300x300" alt="">
+                            <img src="http://dummyimage.com/300x300" alt="" />
                         </div>
                         <div class="col-22">
                             <div class="info row">
@@ -74,13 +87,17 @@
                                 <div class="pill right">2</div>
                             </div>
                             <div class="content">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem repellat quia iste excepturi ut beatae, architecto cum quo, animi ab voluptatem dolores earum necessitatibus id sunt libero? Voluptas, harum veniam!
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Rem repellat quia iste
+                                excepturi ut beatae, architecto cum quo, animi
+                                ab voluptatem dolores earum necessitatibus id
+                                sunt libero? Voluptas, harum veniam!
                             </div>
                         </div>
                     </div>
                     <div class="comment-item row">
                         <div class="thumbnail col-2">
-                            <img src="http://dummyimage.com/300x300" alt="">
+                            <img src="http://dummyimage.com/300x300" alt="" />
                         </div>
                         <div class="col-22">
                             <div class="info row">
@@ -91,13 +108,17 @@
                                 <div class="pill right">2</div>
                             </div>
                             <div class="content">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem repellat quia iste excepturi ut beatae, architecto cum quo, animi ab voluptatem dolores earum necessitatibus id sunt libero? Voluptas, harum veniam!
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Rem repellat quia iste
+                                excepturi ut beatae, architecto cum quo, animi
+                                ab voluptatem dolores earum necessitatibus id
+                                sunt libero? Voluptas, harum veniam!
                             </div>
                         </div>
                     </div>
                     <div class="comment-item row">
                         <div class="thumbnail col-2">
-                            <img src="http://dummyimage.com/300x300" alt="">
+                            <img src="http://dummyimage.com/300x300" alt="" />
                         </div>
                         <div class="col-22">
                             <div class="info row">
@@ -108,7 +129,11 @@
                                 <div class="pill right">2</div>
                             </div>
                             <div class="content">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem repellat quia iste excepturi ut beatae, architecto cum quo, animi ab voluptatem dolores earum necessitatibus id sunt libero? Voluptas, harum veniam!
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Rem repellat quia iste
+                                excepturi ut beatae, architecto cum quo, animi
+                                ab voluptatem dolores earum necessitatibus id
+                                sunt libero? Voluptas, harum veniam!
                             </div>
                         </div>
                     </div>
@@ -118,3 +143,5 @@
         <div class="footer"></div>
     </body>
 </html>
+<script src="js/api.js"></script>
+<script src="js/session.js"></script>

@@ -21,9 +21,14 @@
                     </div>
                 </div>
                 <div class="col-8 right text-right">
-                    <a href="#" class="nav-item">登录</a>
-                    <a href="#" class="nav-item">注册</a>
-                    <a href="#" class="nav-item">王花花</a>
+                    <span id="tourist">
+                        <a href="./login.html" class="nav-item">登录</a>
+                        <a href="./signup.html" class="nav-item">注册</a>
+                    </span>
+                    <span id="loggedIn" hidden>
+                        <a href="#" class="nav-item" id="navItemName"></a>
+                        <a href="#" id="logOut" onclick="logOut()">登出</a>
+                    </span>
                 </div>
             </div>
         </div>
@@ -50,6 +55,7 @@
     </body>
 </html>
 <script src="js/api.js"></script>
+<script src="js/session.js"></script>
 <script>
     boot();
 
@@ -74,13 +80,21 @@
                 and: user
             }
         };
-        api("user/exists", params, r => {
+        api("user/first", params, r => {
             if (!r.data) {
                 alert("用户名或密码有误");
                 return;
             }
 
             alert("登录成功");
+            onLoginSuccess(r.data);
         });
+    }
+
+    function onLoginSuccess(user) {
+        localStorage.setItem("TomatoSession", user.id);
+        username.value = "";
+        password.value = "";
+        location.href = "./home.html";
     }
 </script>

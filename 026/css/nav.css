@@ -15,8 +15,7 @@
     margin-left: .5rem;
 }
 
-.nav .left > *,
-.nav .right > *{
+.nav .left > *{
     display: inline-block;
 }
 
