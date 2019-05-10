@@ -1,4 +1,4 @@
-# 025-tomato-circle
+# tomato-circle
 
 ## Project setup
 ```
