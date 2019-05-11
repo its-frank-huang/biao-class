@@ -10,13 +10,13 @@
 				</div>
 			</div>
 			<div class="col-8 right text-right">
-				<span id="tourist">
-					<a href="./login.html" class="nav-item">登录</a>
-					<a href="./signup.html" class="nav-item">注册</a>
+				<span v-if="session.loggedin()">
+					<a class="nav-item">{{session.user().username}}</a>
+					<a class="nav-item" @click="session.logout()">登出</a>
 				</span>
-				<span id="loggedIn" hidden>
-					<a href="#" class="nav-item" id="navItemName"></a>
-					<a href="#" id="logOut" onclick="logOut()">登出</a>
+				<span v-else>
+					<router-link to="/login" class="nav-item">登录</router-link>
+					<router-link to="/signup" class="nav-item">注册</router-link>
 				</span>
 			</div>
 		</div>
@@ -24,9 +24,14 @@
 </template>
 
 <script>
+import session from "../lib/session";
 export default {
-    
-}
+	data() {
+		return {
+			session
+		};
+	}
+};
 </script>
 
 <style>
@@ -53,5 +58,24 @@ export default {
 
 .nav .right {
 	padding-top: 0.6rem;
+}
+
+.nav-item {
+	margin-left: 0.5rem;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+	.nav .search input {
+		padding: 0.4rem;
+	}
+
+	.nav .search {
+		padding-top: 0.2rem;
+	}
+
+	.nav .right {
+		padding-top: 0.4rem;
+	}
 }
 </style>

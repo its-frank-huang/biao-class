@@ -174,10 +174,14 @@ body {
 
 input,
 button {
-    width: 100%;
     border: #888 solid 1px;
-    padding: 10px;
+    padding: .5rem;
     background-color: #fff;
+}
+
+form input,
+form button {
+    width: 100%;
 }
 
 .font-size-0 {
@@ -198,10 +202,9 @@ button {
 
 .card{
     background: #fff;
-    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, .1);
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, .2);
     margin-bottom: .5rem;
     padding:.5rem;
-    border-radius: .2rem;
 }
 
 .pill{
@@ -218,4 +221,12 @@ button {
     display: inline-block;
     padding: .2rem .5rem;
     margin-top: .2rem;
+    margin-bottom: .2rem;
+}
+
+@media screen and (max-width:800px){
+    .container{
+        width: 40rem;
+    }
+
 }
