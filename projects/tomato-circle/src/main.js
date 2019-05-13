@@ -6,6 +6,8 @@ import About from './page/about.vue'
 import signup from './page/signup.vue'
 import login from './page/login.vue'
 import settings from './page/settings.vue'
+import settingsMe from './page/settingsMe.vue'
+import settingsSecurity from './page/settingsSecurity.vue'
 import global from "./css/global.css";
 
 Vue.config.productionTip = false
@@ -23,7 +25,17 @@ const routes =[
   },
   {
     path:'/settings',
-    component: settings
+    component: settings,
+    children:[
+      {
+        path:'/me',
+        component: settingsMe
+      },
+      {
+        path:'/security',
+        component: settingsSecurity
+      },
+    ]
   },
   {
     path:'/login',

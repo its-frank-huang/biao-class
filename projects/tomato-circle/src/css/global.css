@@ -159,6 +159,10 @@ body {
     text-align: right;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .muted {
     opacity: 0.4;
 }
@@ -181,6 +185,7 @@ button {
 
 form input,
 form button {
+    margin-top: .2rem;
     width: 100%;
 }
 
@@ -194,6 +199,7 @@ form button {
 
 .vertical-nav a{
     display: block;
+    margin-top: .5rem;
 }
 
 .vertical-nav a:hover{
@@ -230,3 +236,14 @@ form button {
     }
 
 }
+
+.sidebar{
+    background: #fff;
+    height: 100vh;
+    padding: .5rem;
+}
+
+/* .content{
+    padding: .5rem;
+    padding-top: 0px;
+} */
