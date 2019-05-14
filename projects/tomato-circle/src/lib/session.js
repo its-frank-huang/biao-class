@@ -7,6 +7,9 @@ function loggedin(){
 
 function login(sessionId,user){
     localStorage.setItem('sessionId',sessionId);
+
+    
+
     store.set('user',user);
 }
 

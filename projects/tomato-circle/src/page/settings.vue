@@ -2,8 +2,8 @@
 	<div class="container settings-container row">
 		<div class="vertical-nav sidebar col-6">
 			<h1>Settings</h1>
-            <router-link to="/me">基础信息</router-link>
-            <router-link to="/security">安全信息</router-link>
+            <router-link to="/settings/me">基础信息</router-link>
+            <router-link to="/settings/security">安全信息</router-link>
 		</div>
         <div class="col-18 content">
             <router-view></router-view>

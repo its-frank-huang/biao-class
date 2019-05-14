@@ -60,7 +60,10 @@ export default {
                     return;
                 }
 
-                location.href = '/';
+				location.href = '/';
+				
+				delete r.data.password;
+
                 session.login(r.data.id,r.data);
 			});
         },

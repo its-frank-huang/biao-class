@@ -28,11 +28,11 @@ const routes =[
     component: settings,
     children:[
       {
-        path:'/me',
+        path:'me',
         component: settingsMe
       },
       {
-        path:'/security',
+        path:'security',
         component: settingsSecurity
       },
     ]

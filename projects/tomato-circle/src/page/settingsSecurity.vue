@@ -47,7 +47,8 @@ export default {
 				new: false,
 				repeat: false
 			},
-			pending: false
+            pending: false,
+            user: store.get('user'),
 		};
 	},
 	methods: {
@@ -86,9 +87,10 @@ export default {
 					}
 
 					alert("密码更新成功！");
+
 					this.passwordForm = {};
 					this.editMode = false;
-					this.pending = false;
+                    this.pending = false;
 				});
 			});
 		}
