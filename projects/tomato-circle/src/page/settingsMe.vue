@@ -1,8 +1,8 @@
 <template>
 	<form @submit.prevent="update" class="card settings-card">
 		<h2 class="text-center">基础信息</h2>
-		<button type="button" @click="editable = !editable">编辑</button>
-		<fieldset :disabled="disable">
+		<button type="button" @click="editable = !editable"><span v-if="editable">取消</span>编辑</button>
+		<fieldset :disabled="pending">
 			<div class="input-group">
 				<span>昵称</span>
 				<div class="input-wrap">
@@ -45,16 +45,16 @@ export default {
 		return {
 			me: {},
             editable: false,
-            disable:false,
+            pending:false,
 		};
 	},
 	methods: {
 		update() {
-            this.disable = true;
+            this.pending = true;
 			api("user/update", this.me).then(r => {
 				this.me = r.data;
                 this.editable = false;
-                this.disable = false;
+                this.pending = false;
 			});
 		}
 	}
