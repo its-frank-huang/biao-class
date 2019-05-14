@@ -1,5 +1,5 @@
 <template>
-	<div class="main">
+	<div class="container settings-container row">
 		<div class="vertical-nav sidebar col-6">
 			<h1>Settings</h1>
             <router-link to="/me">基础信息</router-link>

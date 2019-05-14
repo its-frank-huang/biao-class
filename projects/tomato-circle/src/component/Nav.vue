@@ -41,6 +41,10 @@ export default {
 	margin-bottom: 0.5rem;
 }
 
+.nav .container {
+	padding: 0px;
+}
+
 .nav .search {
 	padding-top: 0.45rem;
 	padding-left: 0.2rem;
