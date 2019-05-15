@@ -3,7 +3,9 @@
 		<div class="row container">
 			<div class="col-16 left">
 				<div class="logo col-2 font-size-0">
-					<img src="http://dummyimage.com/300x300">
+					<router-link to="/">
+						<img src="http://dummyimage.com/300x300">
+					</router-link>
 				</div>
 				<div class="search col-22">
 					<input type="search">
@@ -11,7 +13,10 @@
 			</div>
 			<div class="col-8 right text-right">
 				<span v-if="session.loggedin()">
-					<router-link to="/settings/me" class="nav-item">{{session.user().name || session.user().username}}</router-link>
+					<router-link
+						to="/settings/me"
+						class="nav-item"
+					>{{session.user().name || session.user().username}}</router-link>
 					<a class="nav-item" @click="session.logout()">登出</a>
 				</span>
 				<span v-else>

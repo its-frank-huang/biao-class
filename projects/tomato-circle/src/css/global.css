@@ -177,24 +177,21 @@ body {
 }
 
 input,
-button {
+button,textarea {
     border: #888 solid 1px;
     padding: 0.5rem;
     background-color: #fff;
 }
 
 form input,
-form button {
+form button,
+form textarea {
     margin-top: 0.5rem;
     width: 100%;
 }
 
 .font-size-0 {
     font-size: 0;
-}
-
-.font-size-0 > * {
-    font-size: 1rem;
 }
 
 .vertical-nav a {
@@ -220,7 +217,7 @@ form button {
     border-radius: 2rem;
 }
 
-.input-group .error {
+.error {
     color: red;
     width: 100%;
     background: rgba(255, 0, 0, 0.2);
@@ -267,10 +264,12 @@ form button {
     outline: 0;
 }
 
-fieldset{
+fieldset,
+router-link{
     border: 0;
     padding: 0;
     margin: 0;
+    display: block;
 }
 
 [disabled]{
