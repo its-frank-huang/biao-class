@@ -284,19 +284,35 @@ router-link{
     padding: .5rem; 
 }
 
+.activity{
+    position: relative;
+}
+
 .activity > *{
     margin-top: .2rem;
+}
+
+.activity .tool{
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+}
+
+.activity .tool > * > *{
+    display: inline-block;
+    margin-left: .2rem;
 }
 
 .activity .title{
     font-size: 1.1rem;
 }
 
-.activity .content{
+.activity .content-preview{
     background: rgba(0, 0, 0, .03);
     padding: .5rem;
 }
 
 .activity .others{
     color: #777;
+    font-size: .9rem;
 }

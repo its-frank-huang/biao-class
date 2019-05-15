@@ -31,6 +31,11 @@
 <script>
 import session from "../lib/session";
 export default {
+	mounted() {
+		if (!session.user()) {
+			location.href = "/#/login";
+		}
+	},
 	data() {
 		return {
 			session

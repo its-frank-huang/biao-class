@@ -13,10 +13,11 @@ function login(sessionId,user){
     store.set('user',user);
 }
 
-function logout(redirect = '/'){
+function logout(redirect = '/#/login'){
     localStorage.removeItem('sessionId');
     localStorage.removeItem('user');
     location.href = redirect;
+    location.reload();
 }
 
 function user(){
