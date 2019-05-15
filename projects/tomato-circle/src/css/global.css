@@ -10,7 +10,8 @@ h3 {
 
 a {
     text-decoration: none;
-    color: inherit;
+    color: royalblue;
+    cursor: pointer;
 }
 
 img {
@@ -274,4 +275,28 @@ router-link{
 
 [disabled]{
     opacity: .5;
+}
+
+.timeline > *{
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, .2);
+    background: #fff;
+    margin-bottom: .15rem;
+    padding: .5rem; 
+}
+
+.activity > *{
+    margin-top: .2rem;
+}
+
+.activity .title{
+    font-size: 1.1rem;
+}
+
+.activity .content{
+    background: rgba(0, 0, 0, .03);
+    padding: .5rem;
+}
+
+.activity .others{
+    color: #777;
 }
