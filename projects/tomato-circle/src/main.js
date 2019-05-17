@@ -3,6 +3,7 @@ import App from './App.vue'
 import Router from 'vue-router'
 import Home from './page/home.vue'
 import About from './page/about.vue'
+import Thread from './page/thread.vue'
 import signup from './page/signup.vue'
 import login from './page/login.vue'
 import settings from './page/settings.vue'
@@ -22,6 +23,10 @@ const routes =[
   {
     path:'/about',
     component: About
+  },
+  {
+    path:'/thread/:id',
+    component: Thread
   },
   {
     path:'/settings',

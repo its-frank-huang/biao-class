@@ -278,24 +278,22 @@ router-link{
 }
 
 .timeline > *{
-    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, .2);
     background: #fff;
-    margin-bottom: .15rem;
-    padding: .5rem; 
-}
-
-.activity{
-    position: relative;
+    margin-bottom: .2rem;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 .activity > *{
-    margin-top: .2rem;
+    padding: .5rem;
 }
 
-.activity .tool{
-    position: absolute;
-    right: .5rem;
-    top: .5rem;
+.activity .activity-main .content-preview{
+    padding-top: .5rem;
+}
+
+.activity .activity-main .title{
+    color: inherit;
+    font-size: 1.2rem;
 }
 
 .activity .tool > * > *{
@@ -307,9 +305,12 @@ router-link{
     font-size: 1.1rem;
 }
 
-.activity .content-preview{
-    background: rgba(0, 0, 0, .03);
-    padding: .5rem;
+.activity .activity-bottom{
+    background:#eee;
+}
+
+.activity .user{
+    margin-left: .5rem;
 }
 
 .activity .others{
