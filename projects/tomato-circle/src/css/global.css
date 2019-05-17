@@ -23,6 +23,37 @@ body {
     margin: 0;
 }
 
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th{
+    border-bottom: 2px solid #aaa;
+}
+
+td{
+    border-bottom: 1px solid #ccc;
+}
+
+tr:last-child td{
+    border-bottom: none;
+}
+
+th,td{
+    text-align: left;
+    padding: .5rem 0px;
+}
+
+th:last-child,
+td:last-child{
+    text-align: right;
+}
+
+table .tool > *{
+    margin-left: .2rem;
+}
+
 .container {
     padding: 0px 0.5rem;
     width: 50rem;
@@ -173,6 +204,33 @@ body {
     margin-top: 0.8rem;
 }
 
+.input-group-line{
+    position: relative;
+}
+
+.input-group-line::before,
+.input-group-line::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.input-group-line .title::after{
+    content: " :";
+}
+
+.input-group-line .title{
+    width: 15%;
+    float: left;
+    margin-top: .5rem;
+    line-height: 2.2rem;
+}
+
+.input-group-line input{
+    width: 85%;
+    float: right;
+}
+
 .input-group > * {
     font-size: 1rem;
 }
@@ -209,6 +267,10 @@ form textarea {
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
     margin-bottom: 0.5rem;
     padding: 0.5rem;
+}
+
+.content{
+    white-space: pre-line;
 }
 
 .pill {
@@ -248,10 +310,6 @@ form textarea {
 .settings-span{
     position: absolute;
     left: 0;
-}
-
-.settings-container {
-    padding: 0px;
 }
 
 .settings-card {

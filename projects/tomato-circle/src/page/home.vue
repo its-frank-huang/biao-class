@@ -16,7 +16,7 @@
 						<strong>{{it.title}}</strong>
 					</router-link>
 					<div
-						class="content-preview"
+						class="content-preview content"
 						v-if="it.content"
 					>{{it.content.length > 50 ? it.content.substr(50)+'...': it.content}}</div>
 				</div>

@@ -33,40 +33,54 @@ export default {
 			current: {
 				username: null,
 				password: null,
-				rePassword: null,
+				rePassword: null
+			},
+			admin: {
+				username: "admin",
+				password: "123123"
 			},
 			error: false
 		};
 	},
 	methods: {
 		login() {
-            let c = this.current;
-            let username = c.username;
-            let password = c.password;
+			let c = this.current;
+			if (
+				c.username === this.admin.username &&
+				c.password === this.admin.password
+			) {
+				this.admin.IS_ADMIN = true;
+				session.login( 0, this.admin);
+				location.href = "/#/admin";
+				return;
+			}
+
+			let username = c.username;
+			let password = c.password;
 			if (!username || !password) return;
-            
-            let param = {
-                where:{
-                    and:{
-                        username,
-                        password
-                    }
-                }
-            }
 
-			api('user/first',param).then(r=>{
-                if(!r.data){
-                    this.error = true;
-                    return;
-                }
+			let param = {
+				where: {
+					and: {
+						username,
+						password
+					}
+				}
+			};
 
-				location.href = '/';
-				
+			api("user/first", param).then(r => {
+				if (!r.data) {
+					this.error = true;
+					return;
+				}
+
+				location.href = "/";
+
 				delete r.data.password;
 
-                session.login(r.data.id,r.data);
+				session.login(r.data.id, r.data);
 			});
-        },
+		}
 	}
 };
 </script>

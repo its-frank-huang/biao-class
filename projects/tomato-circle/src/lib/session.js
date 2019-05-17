@@ -24,9 +24,14 @@ function user(){
     return store.get('user');
 }
 
+function isAdmin(){
+    return this.user().IS_ADMIN;
+}
+
 export default{
     loggedin,
     login,
     logout,
     user,
+    isAdmin,
 }
