@@ -12,7 +12,8 @@
 					</div>
 					<div class="input-group input-group-line">
 						<div class="title">用户名</div>
-						<input type="text" v-model="form.username">
+						<input type="text" @keyup="validator('username')" v-model="form.username">
+						<span class="error" v-for="(value,key) in error.username" v-if="!value" :key="key">{{rules.username[key].msg}}</span>
 					</div>
 					<div class="input-group input-group-line">
 						<div class="title">密码</div>
@@ -38,7 +39,7 @@
 					<th>操作</th>
 				</thead>
 				<tbody>
-					<tr v-for="it in list">
+					<tr v-for="it in list" :key="it.id">
 						<td>{{it.id}}</td>
 						<td>{{it.name || '-'}}</td>
 						<td>{{it.username}}</td>
@@ -59,21 +60,56 @@
 <script>
 import api from "../../lib/api";
 import store from "../../lib/store";
+import valee from "../../lib/valee";
 
 export default {
 	data() {
 		return {
 			form: {},
 			ui: {
-				showForm: false
+				showForm: true
 			},
-			list: []
+			list: [],
+			rules: {
+				username: {
+					regex: {
+						params: [/^[a-zA-Z]+[0-9]*$/],
+						msg: "用户名应只包含英文字母和数字"
+					},
+					lengthBetween: {
+						params: [4, 12],
+						msg: "用户名长度应为4到12位"
+					}
+				}
+			},
+			error: {
+				// username:{
+				// 	regex:false,
+				// 	lengthBetween:false,
+				// }
+			}
 		};
 	},
 	mounted() {
 		this.read();
 	},
 	methods: {
+		validator(field) {
+			let value = this.form[field];
+			let fieldRules = this.rules[field];
+
+			for (let rule in fieldRules) {
+				let ruleObj = fieldRules[rule];
+
+				let valid = valee[rule](value, ...ruleObj.params);
+				
+				if(!this.error[field]) this.$set(this.error,field,{});
+
+				valid
+					? (this.error[field][rule] = true)
+					: (this.error[field][rule] = false);
+			}
+		},
 		read() {
 			api("user/read").then(r => {
 				if (!r.data) {
@@ -85,33 +121,32 @@ export default {
 			});
 		},
 		submit() {
-            let action = 'user/create';
+			let action = "user/create";
 
-            if(this.form.id) 
-                action = 'user/update';
+			if (this.form.id) action = "user/update";
 
 			api(action, this.form).then(r => {
 				this.form = {};
 				this.ui.showForm = false;
 				this.read();
 			});
-        },
-        introLenth(intro){
-            if(!intro)return '-';
-            if(intro.length < 10) return intro;
-            return intro.substr(10)+'...';
-        },
-        remove(id){
-            if(!confirm('确定删除用户？')) return;
+		},
+		introLenth(intro) {
+			if (!intro) return "-";
+			if (intro.length < 10) return intro;
+			return intro.substr(10) + "...";
+		},
+		remove(id) {
+			if (!confirm("确定删除用户？")) return;
 
-            api('user/delete',{id}).then(r=>{
-                this.read();
-            });
-        },
-        update(it){
-            this.form = it;
-            this.ui.showForm = true;
-        }
+			api("user/delete", { id }).then(r => {
+				this.read();
+			});
+		},
+		update(it) {
+			this.form = it;
+			this.ui.showForm = true;
+		}
 	}
 };
 </script>

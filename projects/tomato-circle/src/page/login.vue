@@ -51,7 +51,8 @@ export default {
 			) {
 				this.admin.IS_ADMIN = true;
 				session.login( 0, this.admin);
-				location.href = "/#/admin";
+				location.href = "/#/admin/user";
+				location.reload();
 				return;
 			}
 
