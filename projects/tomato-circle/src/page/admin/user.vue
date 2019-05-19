@@ -12,12 +12,23 @@
 					</div>
 					<div class="input-group input-group-line">
 						<div class="title">用户名</div>
-						<input type="text" @keyup="validator('username')" v-model="form.username">
-						<span class="error" v-for="(value,key) in error.username" v-if="!value" :key="key">{{rules.username[key].msg}}</span>
+						<input type="text" @keyup="debounceValidate('username')" v-model="form.username">
+						<span
+							class="error"
+							v-for="(value,key) in error.username"
+							v-if="value"
+							:key="key"
+						>{{rules.username[key].msg}}</span>
 					</div>
 					<div class="input-group input-group-line">
 						<div class="title">密码</div>
-						<input type="password" v-model="form.password">
+						<input type="text" @keyup="debounceValidate('password')" v-model="form.password">
+						<span
+							class="error"
+							v-for="(value,key) in error.password"
+							v-if="value"
+							:key="key"
+						>{{rules.password[key].msg}}</span>
 					</div>
 					<div class="input-group input-group-line">
 						<div class="title">介绍</div>
@@ -72,16 +83,39 @@ export default {
 			list: [],
 			rules: {
 				username: {
+					required: {
+						params: [],
+						msg: "此为必填项"
+					},
+					unique: {
+						params: ["user", "exists", "username"],
+						msg: "用户名重复"
+					},
 					regex: {
 						params: [/^[a-zA-Z]+[0-9]*$/],
-						msg: "用户名应只包含英文字母和数字"
+						msg: "用户名应包含英文字母和数字"
 					},
 					lengthBetween: {
 						params: [4, 12],
 						msg: "用户名长度应为4到12位"
 					}
+				},
+				password: {
+					required: {
+						params: [],
+						msg: "此为必填项"
+					},
+					regex: {
+						params: [/(?=[^0-9]*[0-9]+)(?=[^a-zA-Z]*[a-zA-Z]+)/],
+						msg: "密码应包含英文字母和数字"
+					},
+					lengthBetween: {
+						params: [6, 20],
+						msg: "密码长度应为6到20位"
+					}
 				}
 			},
+			timer: null,
 			error: {
 				// username:{
 				// 	regex:false,
@@ -94,21 +128,51 @@ export default {
 		this.read();
 	},
 	methods: {
+		debounceValidate(field) {
+			if (this.timer) clearTimeout(this.timer);
+
+			this.timer = setTimeout(e => {
+				this.validator(field);
+			}, 500);
+		},
 		validator(field) {
-			let value = this.form[field];
 			let fieldRules = this.rules[field];
+			let vaildForm = true;
 
-			for (let rule in fieldRules) {
-				let ruleObj = fieldRules[rule];
+			for (let key in fieldRules) {
+				let rule = fieldRules[key];
 
-				let valid = valee[rule](value, ...ruleObj.params);
-				
-				if(!this.error[field]) this.$set(this.error,field,{});
+				let valid = valee[key](this.form[field], ...rule.params);
 
-				valid
-					? (this.error[field][rule] = true)
-					: (this.error[field][rule] = false);
+				if (typeof valid == "boolean") {
+					this.afterValidate(field, key, valid);
+					if (!valid) vaildForm = false;
+				} else {
+					valid.then(r => {
+						this.afterValidate(field, key, r);
+						
+						// if (!r) vaildForm = false;
+					});
+				}
 			}
+			return vaildForm;
+		},
+		afterValidate(field, key, valid) {
+			let fieldObj = this.error[field];
+
+			if (!fieldObj) fieldObj = this.$set(this.error, field, {});
+
+			this.$set(fieldObj, key, !valid);
+		},
+		validateForm() {
+			let rules = this.rules;
+
+			for (let field in rules) {
+				
+				if (!this.validator(field)) return false;
+			}
+
+			return true;
 		},
 		read() {
 			api("user/read").then(r => {
@@ -121,6 +185,8 @@ export default {
 			});
 		},
 		submit() {
+			if (!this.validateForm()) return;
+
 			let action = "user/create";
 
 			if (this.form.id) action = "user/update";
