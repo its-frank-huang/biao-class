@@ -3,7 +3,7 @@
 		<div class="card">
 			<h1>User</h1>
 			<form @submit.prevent="submit">
-				<button type="button" @click="ui.showForm = !ui.showForm">编辑</button>
+				<button type="button" @click="ui.showForm = !ui.showForm"><span v-if="ui.showForm">取消</span>编辑</button>
 				<div v-if="ui.showForm" style="padding-top:1rem;">
 					<h3 style="text-align:center;">添加/更新</h3>
 					<div class="input-group input-group-line">
@@ -83,7 +83,7 @@ export default {
 		return {
 			form: {},
 			ui: {
-				showForm: true
+				showForm: false
 			},
 			readParams:{
 				limit:5,
