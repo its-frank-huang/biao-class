@@ -64,22 +64,32 @@
 					</tr>
 				</tbody>
 			</table>
+			<pagination :total="total" :limit="readParams.limit" :onChange="pageChange"/>
 		</div>
 	</div>
 </template>
 
 <script>
+import pagination from "../../component/pagination";
 import api from "../../lib/api";
 import store from "../../lib/store";
 import valee from "../../lib/valee";
 
 export default {
+	components:{
+		pagination,
+	},
 	data() {
 		return {
 			form: {},
 			ui: {
 				showForm: true
 			},
+			readParams:{
+				limit:5,
+				page:1,
+			},
+			total:0,
 			list: [],
 			rules: {
 				username: {
@@ -128,6 +138,10 @@ export default {
 		this.read();
 	},
 	methods: {
+		pageChange(page){
+			this.readParams.page = page; 
+			this.read();
+		},
 		debounceValidate(field) {
 			if (this.timer) clearTimeout(this.timer);
 
@@ -175,13 +189,14 @@ export default {
 			return true;
 		},
 		read() {
-			api("user/read").then(r => {
+			api("user/read",this.readParams).then(r => {
 				if (!r.data) {
 					alert("用户列表读取失败");
 					return;
 				}
 
 				this.list = r.data;
+				this.total = r.total;
 			});
 		},
 		submit() {

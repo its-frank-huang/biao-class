@@ -54,6 +54,11 @@ table .tool > *{
     margin-left: .2rem;
 }
 
+pagination{
+    width: 100%;
+    display: block;
+}
+
 .container {
     padding: 0px 0.5rem;
     width: 50rem;
